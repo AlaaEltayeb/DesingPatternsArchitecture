@@ -1,17 +1,5 @@
 {
   "dependencies": {
-    "com.iti.designpatterns.custompackage": {
-      "version": "file:../../Packages/ITI.DesignPatterns.CustomPackage",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
-    "com.iti.designpatterns.foundation": {
-      "version": "file:../../Foundation/ITI.DesignPatterns.Foundation",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.unity.ai.navigation": {
       "version": "2.0.9",
       "depth": 0,
@@ -204,13 +192,6 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
-    },
-    "jp.hadashikick.vcontainer": {
-      "version": "1.17.0",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://package.openupm.com"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",

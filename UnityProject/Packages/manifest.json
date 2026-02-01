@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "com.iti.designpatterns.custompackage": "file:../../Packages/ITI.DesignPatterns.CustomPackage",
-    "com.iti.designpatterns.foundation": "file:../../Foundation/ITI.DesignPatterns.Foundation",
     "com.unity.ai.navigation": "2.0.9",
     "com.unity.collab-proxy": "2.10.2",
     "com.unity.ide.rider": "3.0.38",
@@ -13,7 +11,6 @@
     "com.unity.timeline": "1.8.9",
     "com.unity.ugui": "2.0.0",
     "com.unity.visualscripting": "1.9.9",
-    "jp.hadashikick.vcontainer": "1.17.0",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.adaptiveperformance": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
