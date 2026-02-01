@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.iti.designpatterns.custompackage": {
-      "version": "file:D:/Projects/Packages/ITI.DesignPatterns.CustomPackage",
+      "version": "file:../../Packages/ITI.DesignPatterns.CustomPackage",
       "depth": 0,
       "source": "local",
       "dependencies": {}
