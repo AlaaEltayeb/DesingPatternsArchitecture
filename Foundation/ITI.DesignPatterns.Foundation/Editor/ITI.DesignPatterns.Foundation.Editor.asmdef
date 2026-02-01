@@ -1,0 +1,14 @@
+{
+    "name": "ITI.DesignPatterns.Foundation.Editor",
+    "rootNamespace": "ITI.DesignPatterns.Foundation.Editor",
+    "references": ["ITI.DesignPatterns.Foundation.Runtime"],
+    "includePlatforms": ["Editor"],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+   "noEngineReferences": false
+}

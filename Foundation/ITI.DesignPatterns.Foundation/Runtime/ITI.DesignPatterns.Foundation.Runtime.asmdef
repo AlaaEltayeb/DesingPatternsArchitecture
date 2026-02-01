@@ -1,0 +1,14 @@
+{
+    "name": "ITI.DesignPatterns.Foundation.Runtime",
+    "rootNamespace": "ITI.DesignPatterns.Foundation.Runtime",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+   "noEngineReferences": false
+}

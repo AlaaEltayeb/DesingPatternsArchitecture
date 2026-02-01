@@ -1,0 +1,9 @@
+{
+    "name": "com.iti.designpatterns.foundation",
+    "version": "0.1.0",
+    "displayName": "ITI.DesignPatterns.Foundation",
+    "description": "Package description",
+    "unity": "2022.2",
+    "unityRelease": "0b8",
+    "hideInEditor": false
+}
