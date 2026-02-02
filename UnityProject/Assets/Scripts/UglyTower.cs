@@ -6,6 +6,9 @@ public class UglyTower : MonoBehaviour
     [Inject]
     private IGameManager _gameManager;
 
+    [Inject]
+    private IEnemiesManager _enemiesManager;
+
     public TowerType TowerId;
     public int Level;
 
@@ -46,7 +49,7 @@ public class UglyTower : MonoBehaviour
         UglyEnemy closestEnemy = null;
         var closestDistance = float.MaxValue;
 
-        var list = EnemyManager.Instance.Enemies;
+        var list = _enemiesManager.Enemies;
 
         for (var i = 0; i < list.Count; i++)
         {

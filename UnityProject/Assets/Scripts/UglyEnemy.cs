@@ -1,7 +1,11 @@
 using UnityEngine;
+using VContainer;
 
 public class UglyEnemy : MonoBehaviour
 {
+    [Inject]
+    private IEnemiesManager _enemiesManager;
+
     public string Type;
     public int Hp;
     public float Speed;
@@ -58,7 +62,7 @@ public class UglyEnemy : MonoBehaviour
             _pathIndex++;
             if (_pathIndex >= _path.Length)
             {
-                EnemyManager.Instance.EnemyReachedBase(this);
+                _enemiesManager.EnemyReachedBase(this);
             }
         }
     }
@@ -69,7 +73,7 @@ public class UglyEnemy : MonoBehaviour
 
         if (Hp <= 0)
         {
-            EnemyManager.Instance.EnemyKilled(this);
+            _enemiesManager.EnemyKilled(this);
         }
     }
 

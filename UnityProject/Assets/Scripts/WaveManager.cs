@@ -1,7 +1,14 @@
 using UnityEngine;
+using VContainer;
 
 public class WaveManager : MonoBehaviour, IWaveManager
 {
+    [Inject]
+    private IEnemiesManager _enemiesManager;
+
+    [Inject]
+    private IUIManager _uiManager;
+
     public static WaveManager Instance;
 
     public int Wave;
@@ -22,16 +29,10 @@ public class WaveManager : MonoBehaviour, IWaveManager
 
         Wave++;
         WaveInProgress = true;
-        UIManager.Instance.RefreshUI();
+        _uiManager.RefreshUI();
 
-        var seq = EnemyManager.Instance.Waves[Mathf.Min(Wave - 1, EnemyManager.Instance.Waves.Length - 1)];
-
-        if (Wave > EnemyManager.Instance.Waves.Length)
-            seq = "RRTTRFRRFT";
-
-        CancelInvoke(nameof(EnemyManager.Instance.SpawnFromSequence));
-        EnemyManager.Instance._spawnSeq = seq;
-        EnemyManager.Instance._spawnIndex = 0;
-        InvokeRepeating(nameof(EnemyManager.Instance.SpawnFromSequence), 0.25f, 0.6f);
+        CancelInvoke(nameof(_enemiesManager.SpawnFromSequence));
+        _enemiesManager.ResetWave(Wave);
+        InvokeRepeating(nameof(_enemiesManager.SpawnFromSequence), 0.25f, 0.6f);
     }
 }

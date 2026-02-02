@@ -1,7 +1,14 @@
 using UnityEngine;
+using VContainer;
 
 public class GameManager : MonoBehaviour, IGameManager
 {
+    [Inject]
+    private IEnemiesManager _enemiesManager;
+
+    [Inject]
+    private IUIManager _uiManager;
+
     [field: SerializeField]
     public Transform BulletParent { get; set; }
 
@@ -24,11 +31,11 @@ public class GameManager : MonoBehaviour, IGameManager
         if (Lives <= 0)
         {
             Lives = 0;
-            UIManager.Instance.RefreshUI();
+            _uiManager.RefreshUI();
             if (WaveManager.Instance.WaveInProgress)
             {
                 WaveManager.Instance.WaveInProgress = false;
-                UIManager.Instance.MessageText.text = "You Lose, (Reload Scene Manually)";
+                _uiManager.UpdateInGameMessage("You Lose, (Reload Scene Manually)");
                 Debug.Log("You Lose, (Reload Scene Manually)");
             }
         }
@@ -36,10 +43,10 @@ public class GameManager : MonoBehaviour, IGameManager
         if (WaveManager.Instance.WaveInProgress)
         {
             var anyAlive = false;
-            for (var i = 0; i < EnemyManager.Instance.Enemies.Count; i++)
+            for (var i = 0; i < _enemiesManager.Enemies.Count; i++)
             {
-                var e = EnemyManager.Instance.Enemies[i];
-                if (e != null && EnemyManager.Instance.Enemies[i].Hp > 0)
+                var e = _enemiesManager.Enemies[i];
+                if (e != null && _enemiesManager.Enemies[i].Hp > 0)
                 {
                     anyAlive = true;
                     break;
@@ -49,9 +56,9 @@ public class GameManager : MonoBehaviour, IGameManager
             if (!anyAlive)
             {
                 WaveManager.Instance.WaveInProgress = false;
-                UIManager.Instance.MessageText.text = "Wave Completed!";
+                _uiManager.UpdateInGameMessage("Wave Completed!");
                 Debug.Log("Wave Completed!");
-                UIManager.Instance.RefreshUI();
+                _uiManager.RefreshUI();
             }
         }
     }

@@ -7,7 +7,8 @@ public class EnemyManager : MonoBehaviour, IEnemiesManager
     [Inject]
     private IGameManager _gameManager;
 
-    public static EnemyManager Instance { get; private set; }
+    [Inject]
+    private IUIManager _uiManager;
 
     public Transform[] Path;
 
@@ -17,9 +18,9 @@ public class EnemyManager : MonoBehaviour, IEnemiesManager
     public GameObject EnemyTankPrefab;
     public GameObject EnemyFlyerPrefab;
 
-    public List<UglyEnemy> Enemies = new();
+    public List<UglyEnemy> Enemies { get; } = new();
 
-    public string[] Waves =
+    public string[] Waves { get; } =
     {
         "RRRRRR",
         "RRRTTRR",
@@ -33,12 +34,15 @@ public class EnemyManager : MonoBehaviour, IEnemiesManager
     public string _spawnSeq;
     public int _spawnIndex;
 
-    private void Awake()
+    public void ResetWave(int wave)
     {
-        if (Instance != null)
-            return;
+        var seq = Waves[Mathf.Min(wave - 1, Waves.Length - 1)];
 
-        Instance = this;
+        if (wave > Waves.Length)
+            seq = "RRTTRFRRFT";
+
+        _spawnSeq = seq;
+        _spawnIndex = 0;
     }
 
     public void SpawnFromSequence()
@@ -75,17 +79,17 @@ public class EnemyManager : MonoBehaviour, IEnemiesManager
     public void EnemyReachedBase(UglyEnemy enemy)
     {
         _gameManager.UpdateLives(-enemy.DamageToBase);
-        UIManager.Instance.RefreshUI();
+        _uiManager.RefreshUI();
 
-        Instance.Enemies.Remove(enemy);
+        Enemies.Remove(enemy);
         Destroy(enemy.gameObject);
     }
 
     public void EnemyKilled(UglyEnemy enemy)
     {
         _gameManager.UpdateGold(enemy.GoldRewards);
-        UIManager.Instance.RefreshUI();
-        Instance.Enemies.Remove(enemy);
+        _uiManager.RefreshUI();
+        Enemies.Remove(enemy);
         Destroy(enemy.gameObject);
     }
 }

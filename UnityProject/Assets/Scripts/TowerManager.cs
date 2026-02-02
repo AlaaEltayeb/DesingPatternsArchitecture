@@ -9,6 +9,9 @@ public class TowerManager : MonoBehaviour, ITowerManager
     [Inject]
     private IGameManager _gameManager;
 
+    [Inject]
+    private IUIManager _uiManager;
+
     public static TowerManager Instance { get; private set; }
 
     public Transform TowerParent;
@@ -42,7 +45,7 @@ public class TowerManager : MonoBehaviour, ITowerManager
     public void SelectSlot(int index)
     {
         _selectedSlotIndex = index;
-        UIManager.Instance.MessageText.text = "Selected Slot: " + _selectedSlotIndex;
+        _uiManager.UpdateInGameMessage("Selected Slot: " + _selectedSlotIndex);
         Debug.Log("Selected Slot: " + _selectedSlotIndex);
     }
 
@@ -50,7 +53,7 @@ public class TowerManager : MonoBehaviour, ITowerManager
     {
         if (_selectedSlotIndex < 0 || _selectedSlotIndex >= BuildSlots.Length)
         {
-            UIManager.Instance.MessageText.text = "Pick A Slot First";
+            _uiManager.UpdateInGameMessage("Pick A Slot First");
             Debug.Log("Pick A Slot First");
             return;
         }
@@ -58,7 +61,7 @@ public class TowerManager : MonoBehaviour, ITowerManager
         var slot = BuildSlots[_selectedSlotIndex];
         if (slot.childCount > 0)
         {
-            UIManager.Instance.MessageText.text = "Slot Already Occupied";
+            _uiManager.UpdateInGameMessage("Slot Already Occupied");
             Debug.Log("Slot Already Occupied");
             return;
         }
@@ -68,13 +71,13 @@ public class TowerManager : MonoBehaviour, ITowerManager
 
         if (_gameManager.Gold < cost)
         {
-            UIManager.Instance.MessageText.text = "Not Enough Gold.";
+            _uiManager.UpdateInGameMessage("Not Enough Gold.");
             Debug.Log("Not Enough Gold.");
             return;
         }
 
         _gameManager.UpdateGold(-cost);
-        UIManager.Instance.RefreshUI();
+        _uiManager.RefreshUI();
 
         var go = Instantiate(
             tower,

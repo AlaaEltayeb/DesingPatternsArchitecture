@@ -1,7 +1,11 @@
 using UnityEngine;
+using VContainer;
 
 public class UglyBullet : MonoBehaviour
 {
+    [Inject]
+    private IEnemiesManager _enemiesManager;
+
     public UglyEnemy Target;
     public int Damage;
     public bool IsSplash;
@@ -27,7 +31,7 @@ public class UglyBullet : MonoBehaviour
             }
             else
             {
-                var list = EnemyManager.Instance.Enemies;
+                var list = _enemiesManager.Enemies;
                 for (var i = 0; i < list.Count; i++)
                 {
                     var e = list[i];

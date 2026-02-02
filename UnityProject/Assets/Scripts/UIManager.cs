@@ -8,40 +8,36 @@ public class UIManager : MonoBehaviour, IUIManager
     [Inject]
     private IGameManager _gameManager;
 
-    public static UIManager Instance { get; private set; }
-
     public TextMeshProUGUI GoldText;
     public TextMeshProUGUI WaveText;
     public TextMeshProUGUI LivesText;
 
-    public TextMeshProUGUI MessageText;
+    [SerializeField]
+    private TextMeshProUGUI _messageText;
     public Button StartWaveButton;
 
     public Button BuildGunnerButton;
     public Button BuildCannonButton;
     public Button BuildFrostButton;
 
-    private void Awake()
-    {
-        if (Instance != null)
-            return;
-
-        Instance = this;
-    }
-
     private void Start()
     {
         RefreshUI();
 
-        if (Instance.StartWaveButton != null)
-            Instance.StartWaveButton.onClick.AddListener(() => WaveManager.Instance.StartNextWave());
+        if (StartWaveButton != null)
+            StartWaveButton.onClick.AddListener(() => WaveManager.Instance.StartNextWave());
 
-        if (Instance.BuildGunnerButton != null)
-            Instance.BuildGunnerButton.onClick.AddListener(() => TowerManager.Instance.BuildTower(TowerType.Gunner));
-        if (Instance.BuildCannonButton != null)
-            Instance.BuildCannonButton.onClick.AddListener(() => TowerManager.Instance.BuildTower(TowerType.Cannon));
-        if (Instance.BuildFrostButton != null)
-            Instance.BuildFrostButton.onClick.AddListener(() => TowerManager.Instance.BuildTower(TowerType.Frost));
+        if (BuildGunnerButton != null)
+            BuildGunnerButton.onClick.AddListener(() => TowerManager.Instance.BuildTower(TowerType.Gunner));
+        if (BuildCannonButton != null)
+            BuildCannonButton.onClick.AddListener(() => TowerManager.Instance.BuildTower(TowerType.Cannon));
+        if (BuildFrostButton != null)
+            BuildFrostButton.onClick.AddListener(() => TowerManager.Instance.BuildTower(TowerType.Frost));
+    }
+
+    public void UpdateInGameMessage(string newMessage)
+    {
+        _messageText.text = newMessage;
     }
 
     public void RefreshUI()
