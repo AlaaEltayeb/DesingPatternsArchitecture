@@ -202,7 +202,6 @@ MonoBehaviour:
   GoldText: {fileID: 0}
   WaveText: {fileID: 0}
   LivesText: {fileID: 0}
-  _messageText: {fileID: 0}
   StartWaveButton: {fileID: 0}
   BuildGunnerButton: {fileID: 0}
   BuildCannonButton: {fileID: 0}
@@ -385,7 +384,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2138442214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57ffd5fa0965f0a46a745f4099474398, type: 3}
+  m_Script: {fileID: 11500000, guid: 2be12010f50b11c4da514283a1b1ad77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameLifetimeScope
   parentReference:

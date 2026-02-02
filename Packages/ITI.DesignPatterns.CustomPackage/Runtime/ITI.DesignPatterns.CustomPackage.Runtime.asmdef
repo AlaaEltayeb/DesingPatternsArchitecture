@@ -3,7 +3,8 @@
     "rootNamespace": "ITI.DesignPatterns.CustomPackage.Runtime",
     "references": [
         "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
-        "GUID:2be9394a0ccb01c419db1f2f6d4253d2"
+        "GUID:2be9394a0ccb01c419db1f2f6d4253d2",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
