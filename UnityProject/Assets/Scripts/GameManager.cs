@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public class UglyDTGameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IGameManager
 {
-    public static UglyDTGameManager Instance;
+    [field: SerializeField]
+    public Transform BulletParent { get; set; }
 
-    public Transform BulletParent;
+    public int Gold { get; private set; } = 200;
 
-    public GameObject BulletPrefab;
+    public int Lives { get; private set; } = 20;
 
-    public int Gold = 200;
-    public int Lives = 20;
-
-    private void Awake()
+    public void UpdateGold(int newGold)
     {
-        if (Instance != null)
-            return;
+        Gold += newGold;
+    }
 
-        Instance = this;
+    public void UpdateLives(int newLives)
+    {
+        Lives += newLives;
     }
 
     private void Update()

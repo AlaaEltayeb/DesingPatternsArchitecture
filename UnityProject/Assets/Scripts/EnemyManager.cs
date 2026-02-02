@@ -1,8 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using VContainer;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour, IEnemiesManager
 {
+    [Inject]
+    private IGameManager _gameManager;
+
     public static EnemyManager Instance { get; private set; }
 
     public Transform[] Path;
@@ -70,7 +74,7 @@ public class EnemyManager : MonoBehaviour
 
     public void EnemyReachedBase(UglyEnemy enemy)
     {
-        UglyDTGameManager.Instance.Lives -= enemy.DamageToBase;
+        _gameManager.UpdateLives(-enemy.DamageToBase);
         UIManager.Instance.RefreshUI();
 
         Instance.Enemies.Remove(enemy);
@@ -79,7 +83,7 @@ public class EnemyManager : MonoBehaviour
 
     public void EnemyKilled(UglyEnemy enemy)
     {
-        UglyDTGameManager.Instance.Gold += enemy.GoldRewards;
+        _gameManager.UpdateGold(enemy.GoldRewards);
         UIManager.Instance.RefreshUI();
         Instance.Enemies.Remove(enemy);
         Destroy(enemy.gameObject);

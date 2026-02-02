@@ -1,7 +1,11 @@
 using UnityEngine;
+using VContainer;
 
 public class UglyTower : MonoBehaviour
 {
+    [Inject]
+    private IGameManager _gameManager;
+
     public TowerType TowerId;
     public int Level;
 
@@ -11,6 +15,8 @@ public class UglyTower : MonoBehaviour
     public float Rate;
     public int Damage;
     public int Cost;
+
+    public GameObject BulletPrefab;
 
     protected virtual void Start()
     {
@@ -62,16 +68,16 @@ public class UglyTower : MonoBehaviour
 
     protected virtual void Shoot(UglyEnemy target, int dmg)
     {
-        if (UglyDTGameManager.Instance.BulletPrefab == null || TowerId == TowerType.Frost)
+        if (BulletPrefab == null || TowerId == TowerType.Frost)
         {
             return;
         }
 
         var bgo = Instantiate(
-            UglyDTGameManager.Instance.BulletPrefab,
+            BulletPrefab,
             transform.position,
             Quaternion.identity,
-            UglyDTGameManager.Instance.BulletParent);
+            _gameManager.BulletParent);
 
         var b = bgo.GetComponent<UglyBullet>();
         if (b == null)

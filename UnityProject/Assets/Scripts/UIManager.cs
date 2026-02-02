@@ -1,9 +1,13 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using VContainer;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour, IUIManager
 {
+    [Inject]
+    private IGameManager _gameManager;
+
     public static UIManager Instance { get; private set; }
 
     public TextMeshProUGUI GoldText;
@@ -43,11 +47,11 @@ public class UIManager : MonoBehaviour
     public void RefreshUI()
     {
         if (GoldText != null)
-            GoldText.text = $"Gold: {UglyDTGameManager.Instance.Gold}";
+            GoldText.text = $"Gold: {_gameManager.Gold}";
         if (WaveText != null)
             WaveText.text = "Wave: " + WaveManager.Instance.Wave
                 + (WaveManager.Instance.WaveInProgress ? " (Running)" : "");
         if (LivesText != null)
-            LivesText.text = $"Lives: {UglyDTGameManager.Instance.Lives}";
+            LivesText.text = $"Lives: {_gameManager.Lives}";
     }
 }

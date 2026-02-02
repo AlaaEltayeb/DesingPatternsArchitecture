@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using VContainer;
 
-public class TowerManager : MonoBehaviour
+public class TowerManager : MonoBehaviour, ITowerManager
 {
+    [Inject]
+    private IGameManager _gameManager;
+
     public static TowerManager Instance { get; private set; }
 
     public Transform TowerParent;
@@ -62,14 +66,14 @@ public class TowerManager : MonoBehaviour
         var tower = TowersPrefabs.FirstOrDefault(towerPrefab => towerPrefab.Type == id)?.Prefab;
         var cost = tower.Cost;
 
-        if (UglyDTGameManager.Instance.Gold < cost)
+        if (_gameManager.Gold < cost)
         {
             UIManager.Instance.MessageText.text = "Not Enough Gold.";
             Debug.Log("Not Enough Gold.");
             return;
         }
 
-        UglyDTGameManager.Instance.Gold -= cost;
+        _gameManager.UpdateGold(-cost);
         UIManager.Instance.RefreshUI();
 
         var go = Instantiate(

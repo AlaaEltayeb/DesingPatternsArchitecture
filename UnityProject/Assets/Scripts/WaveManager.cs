@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WaveManager : MonoBehaviour
+public class WaveManager : MonoBehaviour, IWaveManager
 {
     public static WaveManager Instance;
 
