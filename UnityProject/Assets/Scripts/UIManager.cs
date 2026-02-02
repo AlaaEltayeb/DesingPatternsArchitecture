@@ -33,11 +33,11 @@ public class UIManager : MonoBehaviour
             Instance.StartWaveButton.onClick.AddListener(() => WaveManager.Instance.StartNextWave());
 
         if (Instance.BuildGunnerButton != null)
-            Instance.BuildGunnerButton.onClick.AddListener(() => TowerManager.Instance.BuildTower("Gunner"));
+            Instance.BuildGunnerButton.onClick.AddListener(() => TowerManager.Instance.BuildTower(TowerType.Gunner));
         if (Instance.BuildCannonButton != null)
-            Instance.BuildCannonButton.onClick.AddListener(() => TowerManager.Instance.BuildTower("Cannon"));
+            Instance.BuildCannonButton.onClick.AddListener(() => TowerManager.Instance.BuildTower(TowerType.Cannon));
         if (Instance.BuildFrostButton != null)
-            Instance.BuildFrostButton.onClick.AddListener(() => TowerManager.Instance.BuildTower("Frost"));
+            Instance.BuildFrostButton.onClick.AddListener(() => TowerManager.Instance.BuildTower(TowerType.Frost));
     }
 
     public void RefreshUI()

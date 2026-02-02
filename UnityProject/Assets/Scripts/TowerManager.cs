@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TowerManager : MonoBehaviour
@@ -7,9 +9,7 @@ public class TowerManager : MonoBehaviour
 
     public Transform TowerParent;
 
-    public GameObject TowerGunnerPrefab;
-    public GameObject TowerCannonPrefab;
-    public GameObject TowerFrostPrefab;
+    public List<TowerPrefab> TowersPrefabs;
 
     public Transform[] BuildSlots;
 
@@ -42,7 +42,7 @@ public class TowerManager : MonoBehaviour
         Debug.Log("Selected Slot: " + _selectedSlotIndex);
     }
 
-    public void BuildTower(string id)
+    public void BuildTower(TowerType id)
     {
         if (_selectedSlotIndex < 0 || _selectedSlotIndex >= BuildSlots.Length)
         {
@@ -59,24 +59,8 @@ public class TowerManager : MonoBehaviour
             return;
         }
 
-        var cost = 999;
-        GameObject prefab = null;
-
-        if (id == "Gunner")
-        {
-            cost = 50;
-            prefab = TowerGunnerPrefab;
-        }
-        else if (id == "Cannon")
-        {
-            cost = 80;
-            prefab = TowerCannonPrefab;
-        }
-        else if (id == "Frost")
-        {
-            cost = 70;
-            prefab = TowerFrostPrefab;
-        }
+        var tower = TowersPrefabs.FirstOrDefault(towerPrefab => towerPrefab.Type == id)?.Prefab;
+        var cost = tower.Cost;
 
         if (UglyDTGameManager.Instance.Gold < cost)
         {
@@ -89,18 +73,28 @@ public class TowerManager : MonoBehaviour
         UIManager.Instance.RefreshUI();
 
         var go = Instantiate(
-            prefab,
+            tower,
             slot.position,
             Quaternion.identity,
             slot);
 
-        var t = go.GetComponent<UglyTower>();
-        if (t == null)
-            t = go.AddComponent<UglyTower>();
-
-        t.TowerId = id;
-        t.Level = 1;
-
-        Towers.Add(t);
+        Towers.Add(go);
     }
+}
+
+public enum TowerType
+{
+    Gunner,
+    Cannon,
+    Frost,
+}
+
+[Serializable]
+public class TowerPrefab
+{
+    [field: SerializeField]
+    public TowerType Type { get; set; }
+
+    [field: SerializeField]
+    public UglyTower Prefab { get; set; }
 }
