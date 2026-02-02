@@ -1,0 +1,17 @@
+{
+    "name": "ITI.DesignPatterns.CustomPackage.Runtime",
+    "rootNamespace": "ITI.DesignPatterns.CustomPackage.Runtime",
+    "references": [
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+        "GUID:2be9394a0ccb01c419db1f2f6d4253d2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
