@@ -1,7 +1,9 @@
 {
     "name": "ITI.DesignPatterns.Foundation.Runtime",
     "rootNamespace": "ITI.DesignPatterns.Foundation.Runtime",
-    "references": [],
+    "references": [
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
@@ -10,5 +12,5 @@
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
-   "noEngineReferences": false
+    "noEngineReferences": false
 }
