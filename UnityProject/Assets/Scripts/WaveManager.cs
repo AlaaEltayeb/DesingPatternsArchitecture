@@ -9,17 +9,12 @@ public class WaveManager : MonoBehaviour, IWaveManager
     [Inject]
     private IUIManager _uiManager;
 
-    public static WaveManager Instance;
+    public int Wave { get; private set; }
+    public bool WaveInProgress { get; private set; }
 
-    public int Wave;
-    public bool WaveInProgress;
-
-    private void Awake()
+    public void UpdateWaveInProgress(bool waveInProgress)
     {
-        if (Instance != null)
-            return;
-
-        Instance = this;
+        WaveInProgress = waveInProgress;
     }
 
     public void StartNextWave()

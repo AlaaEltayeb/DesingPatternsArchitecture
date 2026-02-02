@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour, IGameManager
     [Inject]
     private IUIManager _uiManager;
 
+    [Inject]
+    private IWaveManager _waveManager;
+
     [field: SerializeField]
     public Transform BulletParent { get; set; }
 
@@ -32,15 +35,15 @@ public class GameManager : MonoBehaviour, IGameManager
         {
             Lives = 0;
             _uiManager.RefreshUI();
-            if (WaveManager.Instance.WaveInProgress)
+            if (_waveManager.WaveInProgress)
             {
-                WaveManager.Instance.WaveInProgress = false;
+                _waveManager.UpdateWaveInProgress(false);
                 _uiManager.UpdateInGameMessage("You Lose, (Reload Scene Manually)");
                 Debug.Log("You Lose, (Reload Scene Manually)");
             }
         }
 
-        if (WaveManager.Instance.WaveInProgress)
+        if (_waveManager.WaveInProgress)
         {
             var anyAlive = false;
             for (var i = 0; i < _enemiesManager.Enemies.Count; i++)
@@ -55,7 +58,7 @@ public class GameManager : MonoBehaviour, IGameManager
 
             if (!anyAlive)
             {
-                WaveManager.Instance.WaveInProgress = false;
+                _waveManager.UpdateWaveInProgress(false);
                 _uiManager.UpdateInGameMessage("Wave Completed!");
                 Debug.Log("Wave Completed!");
                 _uiManager.RefreshUI();

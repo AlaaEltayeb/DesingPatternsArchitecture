@@ -153,15 +153,6 @@ MonoBehaviour:
   EnemyRunnerPrefab: {fileID: 0}
   EnemyTankPrefab: {fileID: 0}
   EnemyFlyerPrefab: {fileID: 0}
-  Enemies: []
-  Waves:
-  - RRRRRR
-  - RRRTTRR
-  - TTTRRRRR
-  - RFRFRFRF
-  - TTTFFRRRRR
-  - TTTTTT
-  - R
   _spawnSeq: 
   _spawnIndex: 0
 --- !u!4 &789487875
@@ -211,7 +202,7 @@ MonoBehaviour:
   GoldText: {fileID: 0}
   WaveText: {fileID: 0}
   LivesText: {fileID: 0}
-  MessageText: {fileID: 0}
+  _messageText: {fileID: 0}
   StartWaveButton: {fileID: 0}
   BuildGunnerButton: {fileID: 0}
   BuildCannonButton: {fileID: 0}
@@ -308,8 +299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d72acbf82e6e30348ab742ef29b1fed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
-  Wave: 0
-  WaveInProgress: 0
 --- !u!4 &1732384389
 Transform:
   m_ObjectHideFlags: 0
@@ -336,7 +325,7 @@ GameObject:
   - component: {fileID: 2024502405}
   - component: {fileID: 2024502404}
   m_Layer: 0
-  m_Name: UglyDTGameManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,10 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98a31812688fad44a962d2e0f508658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UglyDTGameManager
-  BulletParent: {fileID: 0}
-  BulletPrefab: {fileID: 0}
-  Gold: 200
-  Lives: 20
+  <BulletParent>k__BackingField: {fileID: 0}
 --- !u!4 &2024502405
 Transform:
   m_ObjectHideFlags: 0
@@ -365,6 +351,59 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024502403}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1042.5275, y: 3105.0752, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2138442214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2138442216}
+  - component: {fileID: 2138442215}
+  m_Layer: 0
+  m_Name: GameLifetimeScope
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2138442215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138442214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ffd5fa0965f0a46a745f4099474398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameLifetimeScope
+  parentReference:
+    TypeName: 
+  autoRun: 1
+  autoInjectGameObjects:
+  - {fileID: 2024502403}
+  - {fileID: 1732384387}
+  - {fileID: 789487873}
+  - {fileID: 1115703829}
+  - {fileID: 926226544}
+--- !u!4 &2138442216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138442214}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1042.5275, y: 3105.0752, z: 0}
@@ -382,3 +421,4 @@ SceneRoots:
   - {fileID: 789487875}
   - {fileID: 1115703831}
   - {fileID: 926226546}
+  - {fileID: 2138442216}

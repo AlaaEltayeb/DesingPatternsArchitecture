@@ -12,8 +12,6 @@ public class TowerManager : MonoBehaviour, ITowerManager
     [Inject]
     private IUIManager _uiManager;
 
-    public static TowerManager Instance { get; private set; }
-
     public Transform TowerParent;
 
     public List<TowerPrefab> TowersPrefabs;
@@ -23,14 +21,6 @@ public class TowerManager : MonoBehaviour, ITowerManager
     public List<UglyTower> Towers = new();
 
     private int _selectedSlotIndex = -1;
-
-    private void Awake()
-    {
-        if (Instance != null)
-            return;
-
-        Instance = this;
-    }
 
     private void Update()
     {

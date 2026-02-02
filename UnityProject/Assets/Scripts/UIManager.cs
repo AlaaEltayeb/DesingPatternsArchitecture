@@ -8,6 +8,12 @@ public class UIManager : MonoBehaviour, IUIManager
     [Inject]
     private IGameManager _gameManager;
 
+    [Inject]
+    private IWaveManager _waveManager;
+
+    [Inject]
+    private ITowerManager _towerManager;
+
     public TextMeshProUGUI GoldText;
     public TextMeshProUGUI WaveText;
     public TextMeshProUGUI LivesText;
@@ -25,14 +31,14 @@ public class UIManager : MonoBehaviour, IUIManager
         RefreshUI();
 
         if (StartWaveButton != null)
-            StartWaveButton.onClick.AddListener(() => WaveManager.Instance.StartNextWave());
+            StartWaveButton.onClick.AddListener(() => _waveManager.StartNextWave());
 
         if (BuildGunnerButton != null)
-            BuildGunnerButton.onClick.AddListener(() => TowerManager.Instance.BuildTower(TowerType.Gunner));
+            BuildGunnerButton.onClick.AddListener(() => _towerManager.BuildTower(TowerType.Gunner));
         if (BuildCannonButton != null)
-            BuildCannonButton.onClick.AddListener(() => TowerManager.Instance.BuildTower(TowerType.Cannon));
+            BuildCannonButton.onClick.AddListener(() => _towerManager.BuildTower(TowerType.Cannon));
         if (BuildFrostButton != null)
-            BuildFrostButton.onClick.AddListener(() => TowerManager.Instance.BuildTower(TowerType.Frost));
+            BuildFrostButton.onClick.AddListener(() => _towerManager.BuildTower(TowerType.Frost));
     }
 
     public void UpdateInGameMessage(string newMessage)
@@ -45,8 +51,8 @@ public class UIManager : MonoBehaviour, IUIManager
         if (GoldText != null)
             GoldText.text = $"Gold: {_gameManager.Gold}";
         if (WaveText != null)
-            WaveText.text = "Wave: " + WaveManager.Instance.Wave
-                + (WaveManager.Instance.WaveInProgress ? " (Running)" : "");
+            WaveText.text = "Wave: " + _waveManager.Wave
+                + (_waveManager.WaveInProgress ? " (Running)" : "");
         if (LivesText != null)
             LivesText.text = $"Lives: {_gameManager.Lives}";
     }
