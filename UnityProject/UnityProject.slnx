@@ -1,0 +1,4 @@
+﻿<Solution>
+  <Project Path="ITI.DesignPatterns.Foundation.Runtime.csproj" />
+  <Project Path="ITI.DesignPatterns.CustomPackage.Runtime.csproj" />
+</Solution>
