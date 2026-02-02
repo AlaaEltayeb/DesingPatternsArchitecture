@@ -60,14 +60,10 @@ public class UglyTower : MonoBehaviour
         return closestEnemy;
     }
 
-    private void Shoot(UglyEnemy target, int dmg)
+    protected virtual void Shoot(UglyEnemy target, int dmg)
     {
         if (UglyDTGameManager.Instance.BulletPrefab == null || TowerId == TowerType.Frost)
         {
-            target.TakeDamage(dmg);
-            if (TowerId == TowerType.Frost)
-                target.ApplySlow(0.7f, 1.5f);
-
             return;
         }
 
