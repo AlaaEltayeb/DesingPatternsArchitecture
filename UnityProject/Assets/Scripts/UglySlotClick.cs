@@ -7,6 +7,6 @@ public class UglySlotClick : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        UglyDTGameManager.Instance.SelectSlot(Index);
+        TowerManager.Instance.SelectSlot(Index);
     }
 }

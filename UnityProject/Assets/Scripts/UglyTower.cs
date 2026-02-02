@@ -56,7 +56,7 @@ public class UglyTower : MonoBehaviour
         UglyEnemy closestEnemy = null;
         var closestDistance = float.MaxValue;
 
-        var list = UglyDTGameManager.Instance.Enemies;
+        var list = EnemyManager.Instance.Enemies;
 
         for (var i = 0; i < list.Count; i++)
         {

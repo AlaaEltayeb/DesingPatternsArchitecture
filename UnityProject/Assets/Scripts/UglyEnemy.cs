@@ -58,7 +58,7 @@ public class UglyEnemy : MonoBehaviour
             _pathIndex++;
             if (_pathIndex >= _path.Length)
             {
-                UglyDTGameManager.Instance.EnemyReachedBase(this);
+                EnemyManager.Instance.EnemyReachedBase(this);
             }
         }
     }
@@ -69,7 +69,7 @@ public class UglyEnemy : MonoBehaviour
 
         if (Hp <= 0)
         {
-            UglyDTGameManager.Instance.EnemyKilled(this);
+            EnemyManager.Instance.EnemyKilled(this);
         }
     }
 

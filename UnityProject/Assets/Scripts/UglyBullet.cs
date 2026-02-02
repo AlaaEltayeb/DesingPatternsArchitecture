@@ -27,7 +27,7 @@ public class UglyBullet : MonoBehaviour
             }
             else
             {
-                var list = UglyDTGameManager.Instance.Enemies;
+                var list = EnemyManager.Instance.Enemies;
                 for (var i = 0; i < list.Count; i++)
                 {
                     var e = list[i];
