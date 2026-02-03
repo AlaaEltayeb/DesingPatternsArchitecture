@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15822599f26bfdc4d81bdf6f1db9ad12, type: 3}
-  m_Name: New Game View Container
+  m_Name: GameViewContainer
   m_EditorClassIdentifier: ITI.DesignPatterns.CustomPackage.Runtime::ITI.DesignPatterns.CustomPackage.Runtime.GameViewContainer
   <Prefabs>k__BackingField:
   - {fileID: 1600620432701082251, guid: 01d2df14702910d4aa4dbff313d4321e, type: 3}
+  - {fileID: 5443090358914533170, guid: fdc7f6f132a8a444c8535cbab96a03d7, type: 3}
