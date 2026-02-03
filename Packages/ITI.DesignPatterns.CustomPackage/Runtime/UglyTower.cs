@@ -11,21 +11,10 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         [Inject]
         private IEnemiesManager _enemiesManager;
 
-        public TowerType TowerId;
-        public int Level;
-
+        private int _level = 1;
         private float _cooldown;
 
-        public float Range;
-        public float Rate;
-        public int Damage;
-        public int Cost;
-
-        public GameObject BulletPrefab;
-
-        protected virtual void Start()
-        {
-        }
+        public TurretData TurretData { get; set; }
 
         private void Update()
         {
@@ -39,16 +28,16 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             if (_cooldown > 0)
                 return;
 
-            Damage = Mathf.RoundToInt(Damage * (1f + (Level - 1) * 0.5f));
-            Range *= 1f + (Level - 1) * 0.1f;
+            TurretData.Damage = Mathf.RoundToInt(TurretData.Damage * (1f + (_level - 1) * 0.5f));
+            TurretData.Range *= 1f + (_level - 1) * 0.1f;
 
-            var target = FindTarget(Range);
+            var target = FindTarget(TurretData.Range);
 
             if (target == null)
                 return;
 
-            Shoot(target, Damage);
-            _cooldown = Rate;
+            Shoot(target, TurretData.Damage);
+            _cooldown = TurretData.Rate;
         }
 
         private UglyEnemy FindTarget(float range)
@@ -78,13 +67,13 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 
         protected virtual void Shoot(UglyEnemy target, int dmg)
         {
-            if (BulletPrefab == null || TowerId == TowerType.Frost)
+            if (TurretData.TurretPrefab == null || TurretData.TowerId == TowerType.Frost)
             {
                 return;
             }
 
             var bgo = Instantiate(
-                BulletPrefab,
+                TurretData.TurretPrefab,
                 transform.position,
                 Quaternion.identity,
                 _gameManager.BulletParent);
@@ -95,7 +84,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 
             b.Target = target;
             b.Damage = dmg;
-            b.IsSplash = TowerId == TowerType.Cannon;
+            b.IsSplash = TurretData.TowerId == TowerType.Cannon;
         }
     }
 }

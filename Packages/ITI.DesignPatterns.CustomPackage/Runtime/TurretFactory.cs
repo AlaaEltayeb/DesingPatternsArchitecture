@@ -1,12 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using VContainer;
 
 namespace ITI.DesignPatterns.CustomPackage.Runtime
 {
-    public class TurretFactory : MonoBehaviour, ITurretFactory
+    public class TurretFactory : ITurretFactory
     {
         [Inject]
         private IGameManager _gameManager;
@@ -14,15 +12,18 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         [Inject]
         private IUIManager _uiManager;
 
-        public Transform TowerParent;
-
-        public List<TowerPrefab> TowersPrefabs;
+        private readonly ITurretProvider _turretProvider;
 
         public Transform[] BuildSlots;
 
         public List<UglyTower> Towers = new();
 
         private int _selectedSlotIndex = -1;
+
+        public TurretFactory(ITurretProvider turretProvider)
+        {
+            _turretProvider = turretProvider;
+        }
 
         public void SelectSlot(int index)
         {
@@ -33,6 +34,8 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 
         public void BuildTower(TowerType id)
         {
+            var turret = _turretProvider.GetTurretData(id);
+
             if (_selectedSlotIndex < 0 || _selectedSlotIndex >= BuildSlots.Length)
             {
                 _uiManager.UpdateInGameMessage("Pick A Slot First");
@@ -48,8 +51,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
                 return;
             }
 
-            var tower = TowersPrefabs.FirstOrDefault(towerPrefab => towerPrefab.Type == id)?.Prefab;
-            var cost = tower.Cost;
+            var cost = turret.Cost;
 
             if (_gameManager.Gold < cost)
             {
@@ -61,13 +63,16 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             _gameManager.UpdateGold(-cost);
             _uiManager.RefreshUI();
 
-            var go = Instantiate(
-                tower,
+            var go = GameObject.Instantiate(
+                turret.TurretPrefab,
                 slot.position,
                 Quaternion.identity,
                 slot);
 
-            Towers.Add(go);
+            var tower = go.AddComponent<UglyTower>();
+            tower.TurretData = turret;
+
+            Towers.Add(tower);
         }
     }
 
@@ -76,15 +81,5 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         Gunner,
         Cannon,
         Frost,
-    }
-
-    [Serializable]
-    public class TowerPrefab
-    {
-        [field: SerializeField]
-        public TowerType Type { get; set; }
-
-        [field: SerializeField]
-        public UglyTower Prefab { get; set; }
     }
 }

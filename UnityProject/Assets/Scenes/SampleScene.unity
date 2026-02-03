@@ -254,6 +254,7 @@ MonoBehaviour:
   TowersPrefabs: []
   BuildSlots: []
   Towers: []
+  _selectedSlotIndex: -1
 --- !u!4 &1115703831
 Transform:
   m_ObjectHideFlags: 0
@@ -396,6 +397,7 @@ MonoBehaviour:
   - {fileID: 789487873}
   - {fileID: 1115703829}
   - {fileID: 926226544}
+  _turretContainer: {fileID: 11400000, guid: 501c02000312d1f49ae4e16d78eea044, type: 2}
 --- !u!4 &2138442216
 Transform:
   m_ObjectHideFlags: 0

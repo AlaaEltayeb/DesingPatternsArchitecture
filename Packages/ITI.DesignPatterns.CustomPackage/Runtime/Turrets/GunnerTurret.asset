@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9b9c94964107544b6b7659671ca67b, type: 3}
+  m_Name: GunnerTurret
+  m_EditorClassIdentifier: ITI.DesignPatterns.CustomPackage.Runtime::ITI.DesignPatterns.CustomPackage.Runtime.TurretScriptableObject
+  <TowerId>k__BackingField: 0
+  <Range>k__BackingField: 4
+  <Rate>k__BackingField: 0.25
+  <Damage>k__BackingField: 7
+  <Cost>k__BackingField: 50
+  <BulletPrefab>k__BackingField: {fileID: 1000267587388084441, guid: 4c764920626eb3d40ab9578b67241e8b, type: 3}
