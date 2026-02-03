@@ -9,8 +9,5 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 
         void ResetWave(int wave);
         void SpawnFromSequence();
-
-        void EnemyReachedBase(UglyEnemy enemy);
-        void EnemyKilled(UglyEnemy enemy);
     }
 }

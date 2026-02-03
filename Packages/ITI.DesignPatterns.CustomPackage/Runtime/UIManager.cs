@@ -1,3 +1,5 @@
+using ITI.DesignPatterns.Foundation.Runtime.Command;
+using ITI.DesignPatterns.Foundation.Runtime.Event;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +16,10 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         private IWaveManager _waveManager;
 
         [Inject]
-        private ITowerManager _towerManager;
+        private IEventSystem _eventSystem;
+
+        [Inject]
+        private ICommandDispatcher _commandDispatcher;
 
         public TextMeshProUGUI GoldText;
         public TextMeshProUGUI WaveText;
@@ -32,14 +37,38 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             RefreshUI();
 
             if (StartWaveButton != null)
-                StartWaveButton.onClick.AddListener(() => _waveManager.StartNextWave());
+                StartWaveButton.onClick.AddListener(StartNextWave);
 
             if (BuildGunnerButton != null)
-                BuildGunnerButton.onClick.AddListener(() => _towerManager.BuildTower(TowerType.Gunner));
+                BuildGunnerButton.onClick.AddListener(() => BuildTower(TowerType.Gunner));
             if (BuildCannonButton != null)
-                BuildCannonButton.onClick.AddListener(() => _towerManager.BuildTower(TowerType.Cannon));
+                BuildCannonButton.onClick.AddListener(() => BuildTower(TowerType.Cannon));
             if (BuildFrostButton != null)
-                BuildFrostButton.onClick.AddListener(() => _towerManager.BuildTower(TowerType.Frost));
+                BuildFrostButton.onClick.AddListener(() => BuildTower(TowerType.Frost));
+
+            _eventSystem.Subscribe<EnemyReachedBaseEvent>(UpdateUI);
+            _eventSystem.Subscribe<EnemyKilledEvent>(UpdateUI);
+        }
+
+        private void BuildTower(TowerType towerType)
+        {
+            _commandDispatcher.RegisterAndExecute(() => new SpawnTowerCommand(towerType));
+        }
+
+        private void StartNextWave()
+        {
+            _commandDispatcher.RegisterAndExecute(() => new StartNewWaveCommand());
+        }
+
+        private void UpdateUI<TEvent>(TEvent evt) where TEvent : IEvent
+        {
+            RefreshUI();
+        }
+
+        private void OnDestroy()
+        {
+            _eventSystem.Unsubscribe<EnemyReachedBaseEvent>(UpdateUI);
+            _eventSystem.Unsubscribe<EnemyKilledEvent>(UpdateUI);
         }
 
         public void UpdateInGameMessage(string newMessage)

@@ -1,3 +1,4 @@
+using ITI.DesignPatterns.Foundation.Runtime.Event;
 using UnityEngine;
 using VContainer;
 
@@ -14,6 +15,9 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         [Inject]
         private IWaveManager _waveManager;
 
+        [Inject]
+        private IEventSystem _eventSystem;
+
         [field: SerializeField]
         public Transform BulletParent { get; set; }
 
@@ -29,6 +33,28 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         public void UpdateLives(int newLives)
         {
             Lives += newLives;
+        }
+
+        private void Start()
+        {
+            _eventSystem.Subscribe<EnemyReachedBaseEvent>(OnEnemyReachedBase);
+            _eventSystem.Subscribe<EnemyKilledEvent>(OnEnemyKilled);
+        }
+
+        private void OnEnemyKilled(EnemyKilledEvent evt)
+        {
+            UpdateGold(evt.Enemy.GoldRewards);
+        }
+
+        private void OnEnemyReachedBase(EnemyReachedBaseEvent evt)
+        {
+            UpdateLives(-evt.Enemy.DamageToBase);
+        }
+
+        private void OnDestroy()
+        {
+            _eventSystem.Unsubscribe<EnemyReachedBaseEvent>(OnEnemyReachedBase);
+            _eventSystem.Unsubscribe<EnemyKilledEvent>(OnEnemyKilled);
         }
 
         private void Update()

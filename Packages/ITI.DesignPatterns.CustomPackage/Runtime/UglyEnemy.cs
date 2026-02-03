@@ -1,3 +1,4 @@
+using ITI.DesignPatterns.Foundation.Runtime.Event;
 using UnityEngine;
 using VContainer;
 
@@ -7,6 +8,9 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
     {
         [Inject]
         private IEnemiesManager _enemiesManager;
+
+        [Inject]
+        private IEventSystem _eventSystem;
 
         public string Type;
         public int Hp;
@@ -64,7 +68,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
                 _pathIndex++;
                 if (_pathIndex >= _path.Length)
                 {
-                    _enemiesManager.EnemyReachedBase(this);
+                    _eventSystem.Publish(new EnemyReachedBaseEvent(this));
                 }
             }
         }
@@ -75,7 +79,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 
             if (Hp <= 0)
             {
-                _enemiesManager.EnemyKilled(this);
+                _eventSystem.Publish(new EnemyKilledEvent(this));
             }
         }
 

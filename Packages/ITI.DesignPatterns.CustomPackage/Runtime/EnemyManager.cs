@@ -1,3 +1,4 @@
+using ITI.DesignPatterns.Foundation.Runtime.Event;
 using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
@@ -11,6 +12,9 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 
         [Inject]
         private IUIManager _uiManager;
+
+        [Inject]
+        private IEventSystem _eventSystem;
 
         public Transform[] Path;
 
@@ -35,6 +39,34 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 
         public string _spawnSeq;
         public int _spawnIndex;
+
+        private void Start()
+        {
+            _eventSystem.Subscribe<EnemyReachedBaseEvent>(OnEnemyReachedBase);
+            _eventSystem.Subscribe<EnemyKilledEvent>(OnEnemyKilled);
+        }
+
+        private void OnEnemyKilled(EnemyKilledEvent evt)
+        {
+            DestroyEnemy(evt.Enemy);
+        }
+
+        private void DestroyEnemy(UglyEnemy enemy)
+        {
+            Enemies.Remove(enemy);
+            Destroy(enemy.gameObject);
+        }
+
+        private void OnEnemyReachedBase(EnemyReachedBaseEvent evt)
+        {
+            DestroyEnemy(evt.Enemy);
+        }
+
+        private void OnDestroy()
+        {
+            _eventSystem.Unsubscribe<EnemyReachedBaseEvent>(OnEnemyReachedBase);
+            _eventSystem.Unsubscribe<EnemyKilledEvent>(OnEnemyKilled);
+        }
 
         public void ResetWave(int wave)
         {
@@ -76,23 +108,6 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             enemy.Init(Path);
 
             Enemies.Add(enemy);
-        }
-
-        public void EnemyReachedBase(UglyEnemy enemy)
-        {
-            _gameManager.UpdateLives(-enemy.DamageToBase);
-            _uiManager.RefreshUI();
-
-            Enemies.Remove(enemy);
-            Destroy(enemy.gameObject);
-        }
-
-        public void EnemyKilled(UglyEnemy enemy)
-        {
-            _gameManager.UpdateGold(enemy.GoldRewards);
-            _uiManager.RefreshUI();
-            Enemies.Remove(enemy);
-            Destroy(enemy.gameObject);
         }
     }
 }

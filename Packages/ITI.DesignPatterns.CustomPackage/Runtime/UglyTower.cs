@@ -27,6 +27,11 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         {
         }
 
+        private void Update()
+        {
+            UglyTick();
+        }
+
         public void UglyTick()
         {
             _cooldown -= Time.deltaTime;

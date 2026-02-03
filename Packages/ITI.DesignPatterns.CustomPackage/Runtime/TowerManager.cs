@@ -24,16 +24,6 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 
         private int _selectedSlotIndex = -1;
 
-        private void Update()
-        {
-            for (var i = 0; i < Towers.Count; i++)
-            {
-                var t = Towers[i];
-                if (t != null)
-                    t.UglyTick();
-            }
-        }
-
         public void SelectSlot(int index)
         {
             _selectedSlotIndex = index;
