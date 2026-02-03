@@ -17,6 +17,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.New_Folder
         public void Execute()
         {
             _viewFactory.Create<TestView>("TestView");
+            _viewFactory.Create<NameSetterView>(nameof(NameSetterView));
         }
     }
 }

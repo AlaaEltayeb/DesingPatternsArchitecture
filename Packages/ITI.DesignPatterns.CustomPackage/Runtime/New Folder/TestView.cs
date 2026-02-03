@@ -11,7 +11,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.New_Folder
         private Button _button;
 
         [SerializeField]
-        private TextMeshProUGUI _buttonText;
+        private TextMeshProUGUI _playerNameText;
 
         [SerializeField]
         private Image _playerImage;
@@ -21,6 +21,13 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.New_Folder
             //bind button to ViewModel.command
             //bind text to ViewModel.playername
             //bind image to ViewModel.playerimage
+
+            ViewModel.PlayerName.StartObserving(OnPlayerNameChanged);
+        }
+
+        private void OnPlayerNameChanged(string newValue)
+        {
+            _playerNameText.text = newValue;
         }
     }
 }

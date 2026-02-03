@@ -37,12 +37,16 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             builder.RegisterInstance<IViewContainer>(_viewContainer);
             builder.Register<IViewFactory, ViewFactory>(Lifetime.Singleton);
 
+            builder.Register<PlayerDataModel>(Lifetime.Singleton);
+
             RegisterViewAndViewModels(builder);
         }
 
         private void RegisterViewAndViewModels(IContainerBuilder builder)
         {
             builder.RegisterViewWithViewModelOnNewObject<TestView, TestViewModel>(Lifetime.Transient);
+
+            builder.RegisterViewWithViewModelOnNewObject<NameSetterView, NameSetterViewModel>(Lifetime.Transient);
         }
     }
 }

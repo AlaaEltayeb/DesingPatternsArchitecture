@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6538194839129556628}
   - component: {fileID: 1789788227536596586}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TestView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,6 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21a5d32ab55e1a45a43ca453d6b244e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ITI.DesignPatterns.CustomPackage.Runtime::ITI.DesignPatterns.CustomPackage.Runtime.New_Folder.TestView
+  _button: {fileID: 0}
+  _playerNameText: {fileID: 6967475024115693903}
+  _playerImage: {fileID: 0}
 --- !u!1 &2530100906644621556
 GameObject:
   m_ObjectHideFlags: 0
