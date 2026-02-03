@@ -14,7 +14,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             builder.Register<IEnemiesManager, EnemyManager>(Lifetime.Singleton);
             builder.Register<IUIManager, UIManager>(Lifetime.Singleton);
             builder.Register<IWaveManager, WaveManager>(Lifetime.Singleton);
-            builder.Register<ITowerManager, TowerManager>(Lifetime.Singleton);
+            builder.Register<ITurretFactory, TurretFactory>(Lifetime.Singleton);
         }
     }
 }

@@ -7,12 +7,12 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
     public class UglySlotClick : MonoBehaviour, IPointerClickHandler
     {
         [Inject]
-        private ITowerManager _towerManager;
+        private ITurretFactory _turretFactory;
         public int Index;
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            _towerManager.SelectSlot(Index);
+            _turretFactory.SelectSlot(Index);
         }
     }
 }

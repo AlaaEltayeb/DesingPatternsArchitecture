@@ -5,14 +5,14 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 {
     public sealed class SpawnTowerCommand : ISyncCommand
     {
-        private ITowerManager _towerManager;
+        private ITurretFactory _turretFactory;
 
         private readonly TowerType _towerId;
 
         [Inject]
-        private void Inject(ITowerManager towerManager)
+        private void Inject(ITurretFactory turretFactory)
         {
-            _towerManager = towerManager;
+            _turretFactory = turretFactory;
         }
 
         public SpawnTowerCommand(TowerType towerId)
@@ -22,7 +22,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 
         public void Execute()
         {
-            _towerManager.BuildTower(_towerId);
+            _turretFactory.BuildTower(_towerId);
         }
     }
 }

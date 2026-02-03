@@ -1,19 +1,8 @@
-using UnityEngine;
-
 namespace ITI.DesignPatterns.CustomPackage.Runtime
 {
-    public class ITurretFactory : MonoBehaviour
+    public interface ITurretFactory
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
+        void SelectSlot(int index);
+        void BuildTower(TowerType id);
     }
 }
