@@ -25,7 +25,7 @@ namespace ITI.DesignPatterns.Foundation.Runtime.MVVM
 
         public IViewModel GetViewModel() => ViewModel;
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             ViewModel.Dispose();
         }

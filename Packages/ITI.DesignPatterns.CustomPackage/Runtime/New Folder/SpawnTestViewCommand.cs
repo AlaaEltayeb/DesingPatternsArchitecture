@@ -1,3 +1,4 @@
+using ITI.DesignPatterns.CustomPackage.Runtime.Hud;
 using ITI.DesignPatterns.Foundation.Runtime.Command;
 using ITI.DesignPatterns.Foundation.Runtime.MVVM;
 using VContainer;
@@ -16,8 +17,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.New_Folder
 
         public void Execute()
         {
-            _viewFactory.Create<TestView>("TestView");
-            _viewFactory.Create<NameSetterView>(nameof(NameSetterView));
+            _viewFactory.Create<HudView>(nameof(HudView));
         }
     }
 }

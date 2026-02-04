@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GameViewContainer
   m_EditorClassIdentifier: ITI.DesignPatterns.CustomPackage.Runtime::ITI.DesignPatterns.CustomPackage.Runtime.GameViewContainer
   <Prefabs>k__BackingField:
-  - {fileID: 1600620432701082251, guid: 01d2df14702910d4aa4dbff313d4321e, type: 3}
+  - {fileID: 7531365588106429760, guid: aa38dd1dca1d0fb4c886e4f97414d806, type: 3}
