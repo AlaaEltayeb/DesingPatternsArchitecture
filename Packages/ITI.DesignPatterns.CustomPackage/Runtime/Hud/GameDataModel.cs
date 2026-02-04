@@ -11,12 +11,12 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Hud
 
         public void UpdateGold(int newGold)
         {
-            Gold.Value = newGold;
+            Gold.Value += newGold;
         }
 
         public void UpdateLives(int newLives)
         {
-            Lives.Value = newLives;
+            Lives.Value += newLives;
         }
 
         public void UpdateWave(int newWave)

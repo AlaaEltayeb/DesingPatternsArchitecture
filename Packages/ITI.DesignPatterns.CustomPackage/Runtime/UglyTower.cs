@@ -1,3 +1,4 @@
+using ITI.DesignPatterns.CustomPackage.Runtime.Strategy;
 using UnityEngine;
 using VContainer;
 
@@ -10,6 +11,8 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 
         [Inject]
         private IEnemiesManager _enemiesManager;
+
+        public IAttackStrategy AttackStrategy { get; set; }
 
         private int _level = 1;
         private float _cooldown;
@@ -28,15 +31,16 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             if (_cooldown > 0)
                 return;
 
-            TurretData.Damage = Mathf.RoundToInt(TurretData.Damage * (1f + (_level - 1) * 0.5f));
-            TurretData.Range *= 1f + (_level - 1) * 0.1f;
+            var damage = Mathf.RoundToInt(TurretData.Damage * (1f + (_level - 1) * 0.5f));
+            var range = TurretData.Range * 1f + (_level - 1) * 0.1f;
 
-            var target = FindTarget(TurretData.Range);
+            //var target = FindTarget(TurretData.Range);
 
-            if (target == null)
-                return;
+            //if (target == null)
+            //    return;
 
-            Shoot(target, TurretData.Damage);
+            AttackStrategy.ExecuteStrategy();
+            //Shoot(target, TurretData.Damage);
             _cooldown = TurretData.Rate;
         }
 

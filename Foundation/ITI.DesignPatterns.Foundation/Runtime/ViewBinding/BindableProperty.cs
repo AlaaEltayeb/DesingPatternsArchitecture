@@ -57,7 +57,7 @@ namespace ITI.DesignPatterns.Foundation.Runtime.ViewBinding
             {
                 foreach (var callback in _callbacks)
                 {
-                    callback?.Invoke(_value);
+                    callback?.Invoke(value);
                 }
             }
 

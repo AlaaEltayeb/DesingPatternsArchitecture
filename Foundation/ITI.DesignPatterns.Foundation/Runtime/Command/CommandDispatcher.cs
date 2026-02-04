@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace ITI.DesignPatterns.Foundation.Runtime.Command
 {
@@ -30,6 +31,7 @@ namespace ITI.DesignPatterns.Foundation.Runtime.Command
             }
             catch (Exception e)
             {
+                Debug.Log(e);
                 return;
             }
 

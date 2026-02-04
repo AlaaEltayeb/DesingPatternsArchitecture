@@ -1,11 +1,10 @@
-using ITI.DesignPatterns.CustomPackage.Runtime.Hud;
 using ITI.DesignPatterns.Foundation.Runtime.Command;
 using ITI.DesignPatterns.Foundation.Runtime.MVVM;
 using VContainer;
 
-namespace ITI.DesignPatterns.CustomPackage.Runtime.New_Folder
+namespace ITI.DesignPatterns.CustomPackage.Runtime.TurretUi
 {
-    public sealed class SpawnTestViewCommand : ISyncCommand
+    public sealed class ShowTurretsButtonsCommand : ISyncCommand
     {
         private IViewFactory _viewFactory;
 
@@ -17,7 +16,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.New_Folder
 
         public void Execute()
         {
-            _viewFactory.Create<HudView>(nameof(HudView));
+            _viewFactory.Create<TurretBuilderView>(nameof(TurretBuilderView));
         }
     }
 }

@@ -1,7 +1,9 @@
+using ITI.DesignPatterns.CustomPackage.Runtime.Hud;
+using ITI.DesignPatterns.CustomPackage.Runtime.TurretUi;
 using ITI.DesignPatterns.Foundation.Runtime.Command;
 using VContainer.Unity;
 
-namespace ITI.DesignPatterns.CustomPackage.Runtime.New_Folder
+namespace ITI.DesignPatterns.CustomPackage.Runtime
 {
     public sealed class StartupInitializer : IInitializable
     {
@@ -14,7 +16,8 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.New_Folder
 
         public void Initialize()
         {
-            _commandDispatcher.RegisterAndExecute(() => new SpawnTestViewCommand());
+            _commandDispatcher.RegisterAndExecute(() => new ShowHudCommand());
+            _commandDispatcher.RegisterAndExecute(() => new ShowTurretsButtonsCommand());
         }
     }
 }

@@ -26,24 +26,24 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Hud
             ViewModel.Message.StartObserving(OnMessageChanged);
         }
 
-        private void OnMessageChanged(string newvalue)
+        private void OnMessageChanged(string newValue)
         {
-            _messageText.text = newvalue;
+            _messageText.text = newValue;
         }
 
-        private void OnWaveChanged(int newvalue)
+        private void OnWaveChanged(int newValue)
         {
-            _waveText.text = newvalue.ToString();
+            _waveText.text = newValue.ToString();
         }
 
-        private void OnLivesChanged(int newvalue)
+        private void OnLivesChanged(int newValue)
         {
-            _livesText.text = newvalue.ToString();
+            _livesText.text = newValue.ToString();
         }
 
-        private void OnGoldChanged(int newvalue)
+        private void OnGoldChanged(int newValue)
         {
-            _goldText.text = newvalue.ToString();
+            _goldText.text = newValue.ToString();
         }
 
         protected override void OnDestroy()
