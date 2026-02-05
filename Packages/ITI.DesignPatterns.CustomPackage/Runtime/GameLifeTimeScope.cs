@@ -1,5 +1,6 @@
 using ITI.DesignPatterns.CustomPackage.Runtime.Enemies;
 using ITI.DesignPatterns.CustomPackage.Runtime.GamePlay;
+using ITI.DesignPatterns.CustomPackage.Runtime.GamePlay.Paths;
 using ITI.DesignPatterns.CustomPackage.Runtime.Hud;
 using ITI.DesignPatterns.CustomPackage.Runtime.Hud.TurretUi;
 using ITI.DesignPatterns.CustomPackage.Runtime.Startup;
@@ -31,6 +32,9 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         [SerializeField]
         private AssetCatalog _assetCatalog;
 
+        [SerializeField]
+        private Path _enemyPath;
+
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<StartupInitializer>();
@@ -57,6 +61,8 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 
             builder.Register<IAssetProvider, AssetProvider>(Lifetime.Singleton);
             builder.RegisterInstance<IAssetCatalog>(_assetCatalog);
+
+            builder.RegisterInstance(_enemyPath);
 
             builder.RegisterComponentOnNewGameObject<UpdateContext>(Lifetime.Singleton)
                 .AsImplementedInterfaces();

@@ -1,7 +1,4 @@
-using ITI.DesignPatterns.CustomPackage.Runtime.GamePlay.Paths;
-using ITI.DesignPatterns.CustomPackage.Runtime.Updates;
 using ITI.DesignPatterns.Foundation.Runtime.AssetManagement;
-using ITI.DesignPatterns.Foundation.Runtime.Event;
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -16,11 +13,10 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
         private readonly IAssetProvider _assetProvider;
         private readonly IObjectResolver _objectResolver;
 
-        //Replace Later With A Better Solution
-        private readonly IEventSystem _eventSystem;
-        private readonly IUpdateContext _updateContext;
-
-        public EnemyFactory(IEnemyProvider enemyProvider, IAssetProvider assetProvider, IObjectResolver objectResolver)
+        public EnemyFactory(
+            IEnemyProvider enemyProvider,
+            IAssetProvider assetProvider,
+            IObjectResolver objectResolver)
         {
             _enemyProvider = enemyProvider;
             _assetProvider = assetProvider;
@@ -36,14 +32,12 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
             if (!_enemyProvider.TryGetEnemy(enemyType, out var enemyData))
                 throw new Exception($"Enemy with type '{enemyType}' is not found in the enemy provider");
 
-            var enemyPath = new Path();
-
             var enemyPrefabId = _enemyProvider.GetEnemyPrefabId();
             var enemyPrefab = await _assetProvider.GetPrefab(enemyPrefabId);
             var enemyGameObject = _objectResolver.Instantiate(enemyPrefab, parent);
             var enemyView = enemyGameObject.GetComponent<EnemyView>();
 
-            var enemy = new Enemy(enemyPath, enemyData);
+            var enemy = new Enemy(enemyData);
             _objectResolver.Inject(enemy);
 
             enemyView.SetEnemy(enemy);

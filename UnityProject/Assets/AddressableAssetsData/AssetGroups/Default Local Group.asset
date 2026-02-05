@@ -25,6 +25,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddefd04c4ceb22d408f40968e08a2b9a
+    m_Address: Assets/Content/Art/Flyer.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f882657c72ee810478b832a972d6b02b
+    m_Address: Assets/Content/Art/Tank.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 49add347c4a82f24c99940cf29ae7a85, type: 2}
   m_SchemaSet:

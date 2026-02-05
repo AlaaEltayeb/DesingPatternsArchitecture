@@ -18,7 +18,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
         private IUpdateContext _updateContext;
         private IAssetProvider _assetProvider;
 
-        private readonly Path _enemyPath;
+        private Path _enemyPath;
         private readonly EnemyData _enemyData;
 
         private int _hp;
@@ -26,26 +26,27 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 
         private IEnemyStrategy _currentEnemyStrategy;
 
-        public BindableProperty<Vector2> Position { get; } = new();
         public float Speed { get; private set; }
 
+        public BindableProperty<Vector2> Position { get; } = new();
+        public BindableProperty<Vector2> InitialPosition { get; } = new();
         public BindableProperty<bool> IsDeadOrReachedBase { get; private set; } = new();
         public BindableProperty<Sprite> EnemyImage { get; private set; } = new();
 
-        public Enemy(
-            Path enemyPath,
-            EnemyData enemyData)
+        public Enemy(EnemyData enemyData)
         {
-            _enemyPath = enemyPath;
             _enemyData = enemyData;
         }
 
         [Inject]
         private void Inject(
+            Path enemyPath,
             IEventSystem eventSystem,
             IUpdateContext updateContext,
             IAssetProvider assetProvider)
         {
+            _enemyPath = enemyPath;
+
             _eventSystem = eventSystem;
             _updateContext = updateContext;
             _assetProvider = assetProvider;
@@ -53,6 +54,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
             _hp = _enemyData.Hp;
             Speed = _enemyData.Speed;
 
+            InitialPosition.Value = new Vector2(_enemyPath.EnemyPath[_pathIndex].x, _enemyPath.EnemyPath[_pathIndex].y);
             _updateContext.Add(OnUpdate);
 
             _ = GetEnemyImage();
@@ -81,7 +83,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
             if (IsDeadOrReachedBase.Value)
                 return;
 
-            var targetPoint = _enemyPath.EnemyPath[_pathIndex].position;
+            var targetPoint = _enemyPath.EnemyPath[_pathIndex];
             var newPosition = new Vector2(targetPoint.x, targetPoint.y);
             Position.Value = newPosition;
         }

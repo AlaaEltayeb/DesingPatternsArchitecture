@@ -17,6 +17,13 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
             Enemy.Position.StartObserving(OnEnemyPositionChanged);
             Enemy.IsDeadOrReachedBase.StartObserving(OnEnemyDeadOrReachedBase);
             Enemy.EnemyImage.StartObserving(OnEnemyImageChanged);
+            Enemy.InitialPosition.StartObserving(OnInitialPositionChanged);
+        }
+
+        private void OnInitialPositionChanged(Vector2 newValue)
+        {
+            _targetPosition = new Vector3(newValue.X, newValue.Y, 0);
+            transform.position = _targetPosition;
         }
 
         private void OnEnemyImageChanged(Sprite newValue)
@@ -58,6 +65,9 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
         private void OnDestroy()
         {
             Enemy.Position.StopObserving(OnEnemyPositionChanged);
+            Enemy.IsDeadOrReachedBase.StopObserving(OnEnemyDeadOrReachedBase);
+            Enemy.EnemyImage.StopObserving(OnEnemyImageChanged);
+            Enemy.InitialPosition.StopObserving(OnInitialPositionChanged);
             Enemy.Dispose();
         }
     }

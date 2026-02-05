@@ -3,9 +3,10 @@ using UnityEngine;
 
 namespace ITI.DesignPatterns.CustomPackage.Runtime.GamePlay.Paths
 {
-    public class Path
+    [CreateAssetMenu(fileName = "EnemyPath", menuName = "Path")]
+    public class Path : ScriptableObject
     {
         [field: SerializeField]
-        public List<Transform> EnemyPath { get; private set; } = new();
+        public List<Vector2> EnemyPath { get; private set; } = new();
     }
 }

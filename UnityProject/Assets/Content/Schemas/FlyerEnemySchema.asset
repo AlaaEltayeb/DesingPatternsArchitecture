@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78bebfcf6df45c44ba0d1bb3d34d0060, type: 3}
   m_Name: FlyerEnemySchema
   m_EditorClassIdentifier: ITI.DesignPatterns.Foundation.Runtime::ITI.DesignPatterns.Foundation.Runtime.AssetManagement.ImageSchema
-  <Id>k__BackingField: Bubble
+  <Id>k__BackingField: FlyerEnemy
   <AssetReference>k__BackingField:
-    m_AssetGUID: c6e32ac86ecff074583bd3ad968ae848
+    m_AssetGUID: ddefd04c4ceb22d408f40968e08a2b9a
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
