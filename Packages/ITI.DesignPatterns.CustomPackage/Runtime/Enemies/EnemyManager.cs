@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
 
-namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemy
+namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 {
     public class EnemyManager : MonoBehaviour, IEnemiesManager
     {

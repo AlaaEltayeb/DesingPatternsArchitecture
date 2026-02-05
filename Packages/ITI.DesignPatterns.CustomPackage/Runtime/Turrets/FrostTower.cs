@@ -1,3 +1,5 @@
+using ITI.DesignPatterns.CustomPackage.Runtime.Enemies;
+
 namespace ITI.DesignPatterns.CustomPackage.Runtime
 {
     public class FrostTower : UglyTower, ISlowable

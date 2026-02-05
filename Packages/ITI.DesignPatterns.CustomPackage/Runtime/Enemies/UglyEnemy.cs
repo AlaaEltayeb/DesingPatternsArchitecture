@@ -1,11 +1,10 @@
-using ITI.DesignPatterns.CustomPackage.Runtime.Enemy;
-using ITI.DesignPatterns.CustomPackage.Runtime.Enemy.EnemyStateMachine;
+using ITI.DesignPatterns.CustomPackage.Runtime.Enemies.EnemyStateMachine;
 using ITI.DesignPatterns.Foundation.Runtime.Event;
 using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
 
-namespace ITI.DesignPatterns.CustomPackage.Runtime
+namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 {
     public class UglyEnemy : MonoBehaviour
     {
@@ -15,11 +14,11 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         [Inject]
         private IEventSystem _eventSystem;
 
-        private Dictionary<EnemyStateId, IEnemyStrategy> _strategies = new()
+        private readonly Dictionary<EnemyStateId, IEnemyStrategy> _strategies = new()
         {
-            { EnemyStateId.Walking, new WalkingState() },
-            { EnemyStateId.Frozen, new EnemyFrozenState() },
-            { EnemyStateId.PushBack, new EnemyPushBackState() },
+            { EnemyStateId.Walking, new WalkingStrategy() },
+            { EnemyStateId.Frozen, new EnemyFreezeStrategy() },
+            { EnemyStateId.PushBack, new EnemyPushBackStrategy() },
         };
 
         public string Type;
@@ -30,18 +29,6 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 
         private Transform[] _path;
         private int _pathIndex;
-
-        private void Start()
-        {
-            _eventSystem.Subscribe<EnemyStateChanged>(OnEnemyStateChanged);
-        }
-
-        private void OnEnemyStateChanged(EnemyStateChanged evt)
-        {
-            var strategy = _strategies[evt.EnemyState];
-
-            strategy.Execute();
-        }
 
         public void Init(Transform[] path)
         {
@@ -71,11 +58,6 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
                 GoldRewards = 12;
                 DamageToBase = 3;
             }
-        }
-
-        private void OnDestroy()
-        {
-            _eventSystem.Unsubscribe<EnemyStateChanged>(OnEnemyStateChanged);
         }
 
         private void Update()

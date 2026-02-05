@@ -1,4 +1,4 @@
-using ITI.DesignPatterns.CustomPackage.Runtime.Enemy;
+using ITI.DesignPatterns.CustomPackage.Runtime.Enemies;
 using ITI.DesignPatterns.CustomPackage.Runtime.Hud;
 using ITI.DesignPatterns.Foundation.Runtime.Event;
 using UnityEngine;

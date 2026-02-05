@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemy
+namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 {
     public interface IEnemiesManager
     {
