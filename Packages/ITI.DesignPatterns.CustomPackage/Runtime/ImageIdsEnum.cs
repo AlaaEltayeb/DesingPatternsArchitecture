@@ -1,9 +1,10 @@
 // Auto-Generated enum from ImageSchema Assets
-
-namespace ITI.DesignPatterns.CustomPackage.Runtime
+namespace DesignPatterns
 {
-    public enum ImageIdsEnum
-    {
-        Bubble,
-    }
+public enum ImageIdsEnum
+  {
+     FlyerEnemy,
+     RunnerEnemy,
+     TankEnemy,
+  }
 }

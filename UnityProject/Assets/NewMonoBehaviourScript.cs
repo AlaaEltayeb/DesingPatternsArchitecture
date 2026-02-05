@@ -1,4 +1,4 @@
-using ITI.DesignPatterns.CustomPackage.Runtime;
+using DesignPatterns;
 using ITI.DesignPatterns.Foundation.Runtime.AssetManagement;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -21,7 +21,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private async Task GetSpriteFromAddressables()
     {
-        var sprite = await _assetProvider.GetImage(ImageIdsEnum.Bubble.ToString());
+        var sprite = await _assetProvider.GetImage(ImageIdsEnum.RunnerEnemy.ToString());
 
         _image.sprite = sprite;
     }

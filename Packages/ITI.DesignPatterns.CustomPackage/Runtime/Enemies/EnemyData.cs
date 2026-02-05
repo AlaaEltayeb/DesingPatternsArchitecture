@@ -1,3 +1,4 @@
+using DesignPatterns;
 using UnityEngine;
 
 namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
