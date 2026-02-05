@@ -17,4 +17,4 @@ MonoBehaviour:
   <Rate>k__BackingField: 0.6
   <Damage>k__BackingField: 6
   <Cost>k__BackingField: 80
-  <BulletPrefab>k__BackingField: {fileID: 88135518977197729, guid: 61395d62a838aaf49a25527b514c3828, type: 3}
+  <TurretPrefab>k__BackingField: {fileID: 88135518977197729, guid: 61395d62a838aaf49a25527b514c3828, type: 3}

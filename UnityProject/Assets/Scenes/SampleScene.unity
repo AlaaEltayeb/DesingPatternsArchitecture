@@ -367,9 +367,11 @@ MonoBehaviour:
   parentReference:
     TypeName: 
   autoRun: 1
-  autoInjectGameObjects: []
+  autoInjectGameObjects:
+  - {fileID: 0}
   _turretContainer: {fileID: 11400000, guid: 501c02000312d1f49ae4e16d78eea044, type: 2}
   _viewContainer: {fileID: 11400000, guid: 75d698d3de1e9e449b4fcffd1ded286e, type: 2}
+  _assetCatalog: {fileID: 11400000, guid: 6aa425b7143cc4e49a7a3ab698f27133, type: 2}
 --- !u!4 &2138442216
 Transform:
   m_ObjectHideFlags: 0

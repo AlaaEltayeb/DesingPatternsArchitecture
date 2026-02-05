@@ -2,6 +2,7 @@ using ITI.DesignPatterns.CustomPackage.Runtime.Hud;
 using ITI.DesignPatterns.CustomPackage.Runtime.Strategy;
 using ITI.DesignPatterns.CustomPackage.Runtime.Turrets;
 using ITI.DesignPatterns.CustomPackage.Runtime.TurretUi;
+using ITI.DesignPatterns.Foundation.Runtime.AssetManagement;
 using ITI.DesignPatterns.Foundation.Runtime.Command;
 using ITI.DesignPatterns.Foundation.Runtime.Event;
 using ITI.DesignPatterns.Foundation.Runtime.MVVM;
@@ -20,6 +21,9 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         [SerializeField]
         private ViewContainer _viewContainer;
 
+        [SerializeField]
+        private AssetCatalog _assetCatalog;
+
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<StartupInitializer>();
@@ -37,6 +41,9 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             builder.Register<ITurretFactory, TurretFactory>(Lifetime.Singleton);
 
             builder.Register<IAttackStrategyProvider, AttackStrategyProvider>(Lifetime.Singleton);
+
+            builder.Register<IAssetProvider, AssetProvider>(Lifetime.Singleton);
+            builder.RegisterInstance<IAssetCatalog>(_assetCatalog);
 
             RegisterViewAndViewModels(builder);
         }
