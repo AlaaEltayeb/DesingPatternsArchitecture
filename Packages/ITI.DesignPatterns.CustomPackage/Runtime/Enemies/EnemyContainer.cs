@@ -1,17 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 {
-    public class EnemyContainer : MonoBehaviour
+    [CreateAssetMenu(fileName = "EnemyContainer", menuName = "Enemies/EnemyContainer", order = 2)]
+    public sealed class EnemyContainer : ScriptableObject, IEnemyContainer
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        private void Start()
-        {
-        }
-
-        // Update is called once per frame
-        private void Update()
-        {
-        }
+        [field: SerializeField]
+        public List<EnemyData> Enemies { get; private set; }
     }
 }

@@ -1,17 +1,36 @@
-using UnityEngine;
+using System.Collections.Generic;
 
 namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 {
-    public class EnemyProvider : MonoBehaviour
+    public sealed class EnemyProvider : IEnemyProvider
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        private void Start()
+        private IEnemyContainer _enemyContainer;
+
+        private readonly Dictionary<EnemyType, EnemyData> _mapping = new();
+
+        public EnemyProvider(IEnemyContainer enemyContainer)
         {
+            _enemyContainer = enemyContainer;
+            MapEnemies();
         }
 
-        // Update is called once per frame
-        private void Update()
+        private void MapEnemies()
         {
+            foreach (var enemyData in _enemyContainer.Enemies)
+            {
+                _mapping.Add(enemyData.EnemyType, enemyData);
+            }
+        }
+
+        public bool TryGetEnemy(EnemyType enemyType, out EnemyData enemy)
+        {
+            enemy = null;
+
+            if (!_mapping.TryGetValue(enemyType, out var value))
+                return false;
+
+            enemy = value;
+            return true;
         }
     }
 }

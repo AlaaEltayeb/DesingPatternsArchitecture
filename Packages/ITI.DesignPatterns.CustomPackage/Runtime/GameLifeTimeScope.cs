@@ -1,3 +1,4 @@
+using ITI.DesignPatterns.CustomPackage.Runtime.Enemies;
 using ITI.DesignPatterns.CustomPackage.Runtime.GamePlay;
 using ITI.DesignPatterns.CustomPackage.Runtime.Hud;
 using ITI.DesignPatterns.CustomPackage.Runtime.Startup;
@@ -24,6 +25,9 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         private ViewContainer _viewContainer;
 
         [SerializeField]
+        private EnemyContainer _enemyContainer;
+
+        [SerializeField]
         private AssetCatalog _assetCatalog;
 
         protected override void Configure(IContainerBuilder builder)
@@ -45,6 +49,10 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             builder.Register<ITurretFactory, TurretFactory>(Lifetime.Singleton);
 
             builder.Register<IAttackStrategyProvider, AttackStrategyProvider>(Lifetime.Singleton);
+
+            builder.RegisterInstance<IEnemyContainer>(_enemyContainer);
+            builder.Register<IEnemyProvider, EnemyProvider>(Lifetime.Singleton);
+            builder.Register<IEnemyFactory, EnemyFactory>(Lifetime.Singleton);
 
             builder.Register<IAssetProvider, AssetProvider>(Lifetime.Singleton);
             builder.RegisterInstance<IAssetCatalog>(_assetCatalog);

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad0cda3cc96fec4bb194ab283a51b1e, type: 3}
   m_Name: Flyer
   m_EditorClassIdentifier: ITI.DesignPatterns.CustomPackage.Runtime::ITI.DesignPatterns.CustomPackage.Runtime.Enemies.EnemyData
-  <EnemyType>k__BackingField: 0
-  <Hp>k__BackingField: 0
-  <Speed>k__BackingField: 0
-  <GoldReward>k__BackingField: 0
-  <DamageToBase>k__BackingField: 0
+  <EnemyType>k__BackingField: 2
+  <Hp>k__BackingField: 50
+  <Speed>k__BackingField: 3.5
+  <GoldReward>k__BackingField: 8
+  <DamageToBase>k__BackingField: 2

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ITI.DesignPatterns.CustomPackage.Runtime
+namespace ITI.DesignPatterns.CustomPackage.Runtime.Turrets
 {
     [CreateAssetMenu(fileName = "TurretContainer", menuName = "Turrets/TurretContainer", order = 2)]
     public sealed class TurretContainer : ScriptableObject, ITurretContainer

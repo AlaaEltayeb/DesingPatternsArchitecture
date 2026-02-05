@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Runner
   m_EditorClassIdentifier: ITI.DesignPatterns.CustomPackage.Runtime::ITI.DesignPatterns.CustomPackage.Runtime.Enemies.EnemyData
   <EnemyType>k__BackingField: 0
-  <Hp>k__BackingField: 0
-  <Speed>k__BackingField: 0
-  <GoldReward>k__BackingField: 0
-  <DamageToBase>k__BackingField: 0
+  <Hp>k__BackingField: 25
+  <Speed>k__BackingField: 2
+  <GoldReward>k__BackingField: 5
+  <DamageToBase>k__BackingField: 1

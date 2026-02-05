@@ -1,19 +1,6 @@
-using UnityEngine;
-
-namespace ITI.DesignPatterns.CustomPackage.Runtime
+namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 {
-    public class IEnemyFactory : MonoBehaviour
+    public interface IEnemyFactory
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }
