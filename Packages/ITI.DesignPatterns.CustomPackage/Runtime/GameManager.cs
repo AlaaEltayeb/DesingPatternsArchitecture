@@ -1,3 +1,5 @@
+using ITI.DesignPatterns.CustomPackage.Runtime.Enemy;
+using ITI.DesignPatterns.CustomPackage.Runtime.Hud;
 using ITI.DesignPatterns.Foundation.Runtime.Event;
 using UnityEngine;
 using VContainer;
@@ -10,13 +12,13 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         private IEnemiesManager _enemiesManager;
 
         [Inject]
-        private IUIManager _uiManager;
-
-        [Inject]
         private IWaveManager _waveManager;
 
         [Inject]
         private IEventSystem _eventSystem;
+
+        [Inject]
+        private GameDataModel _gameDataModel;
 
         [field: SerializeField]
         public Transform BulletParent { get; set; }
@@ -62,12 +64,10 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             if (Lives <= 0)
             {
                 Lives = 0;
-                _uiManager.RefreshUI();
                 if (_waveManager.WaveInProgress)
                 {
                     _waveManager.UpdateWaveInProgress(false);
-                    _uiManager.UpdateInGameMessage("You Lose, (Reload Scene Manually)");
-                    Debug.Log("You Lose, (Reload Scene Manually)");
+                    _gameDataModel.UpdateMessage("You Lose, (Reload Scene Manually)");
                 }
             }
 
@@ -87,9 +87,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
                 if (!anyAlive)
                 {
                     _waveManager.UpdateWaveInProgress(false);
-                    _uiManager.UpdateInGameMessage("Wave Completed!");
-                    Debug.Log("Wave Completed!");
-                    _uiManager.RefreshUI();
+                    _gameDataModel.UpdateMessage("Wave Completed!");
                 }
             }
         }

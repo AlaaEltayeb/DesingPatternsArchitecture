@@ -19,9 +19,9 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Hud
             Lives.Value += newLives;
         }
 
-        public void UpdateWave(int newWave)
+        public void UpdateWave()
         {
-            Wave.Value = newWave;
+            Wave.Value++;
         }
 
         public void UpdateMessage(string newMessage)

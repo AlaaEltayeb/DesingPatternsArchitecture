@@ -1,20 +1,18 @@
+using ITI.DesignPatterns.CustomPackage.Runtime.Hud;
 using ITI.DesignPatterns.Foundation.Runtime.Event;
 using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
 
-namespace ITI.DesignPatterns.CustomPackage.Runtime
+namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemy
 {
     public class EnemyManager : MonoBehaviour, IEnemiesManager
     {
         [Inject]
-        private IGameManager _gameManager;
-
-        [Inject]
-        private IUIManager _uiManager;
-
-        [Inject]
         private IEventSystem _eventSystem;
+
+        [Inject]
+        private GameDataModel _gameDataModel;
 
         public Transform[] Path;
 
@@ -68,11 +66,11 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             _eventSystem.Unsubscribe<EnemyKilledEvent>(OnEnemyKilled);
         }
 
-        public void ResetWave(int wave)
+        public void ResetWave()
         {
-            var seq = Waves[Mathf.Min(wave - 1, Waves.Length - 1)];
+            var seq = Waves[Mathf.Min(_gameDataModel.Wave.Value - 1, Waves.Length - 1)];
 
-            if (wave > Waves.Length)
+            if (_gameDataModel.Wave.Value > Waves.Length)
                 seq = "RRTTRFRRFT";
 
             _spawnSeq = seq;

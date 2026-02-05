@@ -3,7 +3,7 @@ using ITI.DesignPatterns.CustomPackage.Runtime.TurretUi;
 using ITI.DesignPatterns.Foundation.Runtime.Command;
 using VContainer.Unity;
 
-namespace ITI.DesignPatterns.CustomPackage.Runtime
+namespace ITI.DesignPatterns.CustomPackage.Runtime.Startup
 {
     public sealed class StartupInitializer : IInitializable
     {

@@ -1,7 +1,9 @@
+using ITI.DesignPatterns.CustomPackage.Runtime.Enemy;
+using ITI.DesignPatterns.CustomPackage.Runtime.Hud;
 using UnityEngine;
 using VContainer;
 
-namespace ITI.DesignPatterns.CustomPackage.Runtime
+namespace ITI.DesignPatterns.CustomPackage.Runtime.Waves
 {
     public class WaveManager : MonoBehaviour, IWaveManager
     {
@@ -9,9 +11,8 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         private IEnemiesManager _enemiesManager;
 
         [Inject]
-        private IUIManager _uiManager;
+        private GameDataModel _gameDataModel;
 
-        public int Wave { get; private set; }
         public bool WaveInProgress { get; private set; }
 
         public void UpdateWaveInProgress(bool waveInProgress)
@@ -24,12 +25,11 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             if (WaveInProgress)
                 return;
 
-            Wave++;
+            _gameDataModel.UpdateWave();
             WaveInProgress = true;
-            _uiManager.RefreshUI();
 
             CancelInvoke(nameof(_enemiesManager.SpawnFromSequence));
-            _enemiesManager.ResetWave(Wave);
+            _enemiesManager.ResetWave();
             InvokeRepeating(nameof(_enemiesManager.SpawnFromSequence), 0.25f, 0.6f);
         }
     }
