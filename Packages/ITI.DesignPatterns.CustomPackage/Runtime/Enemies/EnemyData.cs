@@ -2,16 +2,22 @@ using UnityEngine;
 
 namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 {
-    public class EnemyData : MonoBehaviour
+    [CreateAssetMenu(fileName = "Enemy", menuName = "Enemies/Enemy", order = 1)]
+    public sealed class EnemyData : ScriptableObject
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        private void Start()
-        {
-        }
+        [field: SerializeField]
+        public EnemyType EnemyType { get; private set; }
 
-        // Update is called once per frame
-        private void Update()
-        {
-        }
+        [field: SerializeField]
+        public int Hp { get; private set; }
+
+        [field: SerializeField]
+        public float Speed { get; private set; }
+
+        [field: SerializeField]
+        public int GoldReward { get; private set; }
+
+        [field: SerializeField]
+        public int DamageToBase { get; private set; }
     }
 }

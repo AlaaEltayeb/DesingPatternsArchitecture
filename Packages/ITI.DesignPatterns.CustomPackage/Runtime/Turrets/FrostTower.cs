@@ -4,15 +4,12 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 {
     public class FrostTower : UglyTower, ISlowable
     {
-        protected override void Shoot(UglyEnemy target, int dmg)
-        {
-            target.TakeDamage(dmg);
-            ApplySlow(target);
-        }
+        public float SlowFactor { get; } = 0.7f;
+        public float SlowDuration { get; } = 1.5f;
 
-        public void ApplySlow(UglyEnemy target)
+        protected override void Shoot(Enemy target, int dmg)
         {
-            target.ApplySlow(0.7f, 1.5f);
+            //Execute Command
         }
     }
 }

@@ -1,3 +1,4 @@
+using ITI.DesignPatterns.CustomPackage.Runtime.GamePlay;
 using ITI.DesignPatterns.CustomPackage.Runtime.Hud;
 using ITI.DesignPatterns.CustomPackage.Runtime.Startup;
 using ITI.DesignPatterns.CustomPackage.Runtime.Strategy;
@@ -28,6 +29,8 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<StartupInitializer>();
+
+            builder.Register<IGameManager, GameManager>(Lifetime.Singleton);
 
             builder.Register<IEventSystem, EventSystem>(Lifetime.Singleton);
             builder.Register<ICommandDispatcher, CommandDispatcher>(Lifetime.Singleton);

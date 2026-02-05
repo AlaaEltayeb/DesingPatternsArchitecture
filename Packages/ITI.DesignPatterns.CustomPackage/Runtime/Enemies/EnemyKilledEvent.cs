@@ -4,11 +4,11 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 {
     public struct EnemyKilledEvent : IEvent
     {
-        public UglyEnemy Enemy;
+        public int GoldReward { get; private set; }
 
-        public EnemyKilledEvent(UglyEnemy enemy)
+        public EnemyKilledEvent(int goldReward)
         {
-            Enemy = enemy;
+            GoldReward = goldReward;
         }
     }
 }

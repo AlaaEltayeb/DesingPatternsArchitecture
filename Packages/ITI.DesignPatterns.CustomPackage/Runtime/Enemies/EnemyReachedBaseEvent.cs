@@ -4,11 +4,11 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 {
     public struct EnemyReachedBaseEvent : IEvent
     {
-        public UglyEnemy Enemy { get; }
+        public int EnemyDamageToBase { get; }
 
-        public EnemyReachedBaseEvent(UglyEnemy enemy)
+        public EnemyReachedBaseEvent(int enemyDamageToBase)
         {
-            Enemy = enemy;
+            EnemyDamageToBase = enemyDamageToBase;
         }
     }
 }

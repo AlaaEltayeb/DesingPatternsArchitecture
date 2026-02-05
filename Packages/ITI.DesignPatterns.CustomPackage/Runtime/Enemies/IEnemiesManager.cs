@@ -5,7 +5,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
     public interface IEnemiesManager
     {
         string[] Waves { get; }
-        List<UglyEnemy> Enemies { get; }
+        List<Enemy> Enemies { get; }
 
         void ResetWave();
         void SpawnFromSequence();

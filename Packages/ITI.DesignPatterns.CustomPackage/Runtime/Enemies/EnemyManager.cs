@@ -22,7 +22,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
         public GameObject EnemyTankPrefab;
         public GameObject EnemyFlyerPrefab;
 
-        public List<UglyEnemy> Enemies { get; } = new();
+        public List<Enemy> Enemies { get; } = new();
 
         public string[] Waves { get; } =
         {
@@ -46,18 +46,18 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 
         private void OnEnemyKilled(EnemyKilledEvent evt)
         {
-            DestroyEnemy(evt.Enemy);
+            //DestroyEnemy(evt.Enemy);
         }
 
-        private void DestroyEnemy(UglyEnemy enemy)
+        private void DestroyEnemy(Enemy enemy)
         {
             Enemies.Remove(enemy);
-            Destroy(enemy.gameObject);
+            //Destroy(enemy.gameObject);
         }
 
         private void OnEnemyReachedBase(EnemyReachedBaseEvent evt)
         {
-            DestroyEnemy(evt.Enemy);
+            //DestroyEnemy(evt.Enemy);
         }
 
         private void OnDestroy()
@@ -98,14 +98,14 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
                 Quaternion.identity,
                 EnemyParent);
 
-            var enemy = go.GetComponent<UglyEnemy>();
-            if (enemy == null)
-                enemy = go.AddComponent<UglyEnemy>();
+            //var enemy = go.GetComponent<Enemy>();
+            //if (enemy == null)
+            //    enemy = go.AddComponent<UglyEnemy>();
 
-            enemy.Type = c == 'T' ? "Tank" : c == 'F' ? "Flyer" : "Runner";
-            enemy.Init(Path);
+            //enemy.Type = c == 'T' ? "Tank" : c == 'F' ? "Flyer" : "Runner";
+            //enemy.Init(Path);
 
-            Enemies.Add(enemy);
+            //Enemies.Add(enemy);
         }
     }
 }

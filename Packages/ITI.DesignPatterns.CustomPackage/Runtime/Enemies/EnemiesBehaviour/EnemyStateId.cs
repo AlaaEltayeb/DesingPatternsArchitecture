@@ -1,4 +1,4 @@
-namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies.EnemyStateMachine
+namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies.EnemiesBehaviour
 {
     public enum EnemyStateId
     {

@@ -1,4 +1,5 @@
 using ITI.DesignPatterns.CustomPackage.Runtime.Enemies;
+using ITI.DesignPatterns.CustomPackage.Runtime.GamePlay;
 using ITI.DesignPatterns.CustomPackage.Runtime.Strategy;
 using UnityEngine;
 using VContainer;
@@ -45,32 +46,32 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             _cooldown = TurretData.Rate;
         }
 
-        private UglyEnemy FindTarget(float range)
+        private Enemy FindTarget(float range)
         {
-            UglyEnemy closestEnemy = null;
-            var closestDistance = float.MaxValue;
+            Enemy closestEnemy = null;
+            //var closestDistance = float.MaxValue;
 
-            var list = _enemiesManager.Enemies;
+            //var list = _enemiesManager.Enemies;
 
-            for (var i = 0; i < list.Count; i++)
-            {
-                var e = list[i];
-                if (e == null || e.Hp <= 0)
-                    continue;
+            //for (var i = 0; i < list.Count; i++)
+            //{
+            //    var e = list[i];
+            //    if (e == null || e.Hp <= 0)
+            //        continue;
 
-                var d = Vector3.Distance(transform.position, e.transform.position);
+            //    var d = Vector3.Distance(transform.position, e.transform.position);
 
-                if (d < range && d < closestDistance)
-                {
-                    closestEnemy = e;
-                    closestDistance = d;
-                }
-            }
+            //    if (d < range && d < closestDistance)
+            //    {
+            //        closestEnemy = e;
+            //        closestDistance = d;
+            //    }
+            //}
 
             return closestEnemy;
         }
 
-        protected virtual void Shoot(UglyEnemy target, int dmg)
+        protected virtual void Shoot(Enemy target, int dmg)
         {
             if (TurretData.TurretPrefab == null || TurretData.TowerId == TowerType.Frost)
             {
@@ -80,8 +81,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
             var bgo = Instantiate(
                 TurretData.TurretPrefab,
                 transform.position,
-                Quaternion.identity,
-                _gameManager.BulletParent);
+                Quaternion.identity);
 
             var b = bgo.GetComponent<UglyBullet>();
             if (b == null)
