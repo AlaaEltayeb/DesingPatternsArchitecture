@@ -1,8 +1,9 @@
+using ITI.DesignPatterns.CustomPackage.Runtime.Enemies;
 using ITI.DesignPatterns.Foundation.Runtime.MVVM;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ITI.DesignPatterns.CustomPackage.Runtime.TurretUi
+namespace ITI.DesignPatterns.CustomPackage.Runtime.Hud.TurretUi
 {
     public sealed class TurretBuilderView : ViewBase<TurretBuilderViewModel>
     {
@@ -19,7 +20,8 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.TurretUi
         {
             base.Bind();
 
-            _buildGunner.onClick.AddListener(() => ViewModel.BuildTurret(TowerType.Gunner));
+            _buildGunner.onClick.AddListener(() => ViewModel.SpawnEnemy(EnemyType.Tank));
+            //_buildGunner.onClick.AddListener(() => ViewModel.BuildTurret(TowerType.Gunner));
             _buildCannon.onClick.AddListener(() => ViewModel.BuildTurret(TowerType.Cannon));
             _buildFrost.onClick.AddListener(() => ViewModel.BuildTurret(TowerType.Frost));
         }

@@ -38,7 +38,7 @@ namespace ITI.DesignPatterns.Foundation.Runtime.Command
             commandToExecute.Execute();
         }
 
-        public async Task Register(Func<IAsyncCommand> command)
+        public async Task RegisterAndExecuteAsync(Func<IAsyncCommand> command)
         {
             var commandToExecute = command.Invoke();
 
@@ -70,7 +70,7 @@ namespace ITI.DesignPatterns.Foundation.Runtime.Command
             return commandToExecute.Execute();
         }
 
-        public async Task<TResult> Register<TResult>(Func<IAsyncCommand<TResult>> command)
+        public async Task<TResult> RegisterAndExecuteAsync<TResult>(Func<IAsyncCommand<TResult>> command)
         {
             var commandToExecute = command.Invoke();
 

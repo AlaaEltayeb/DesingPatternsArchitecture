@@ -1,6 +1,6 @@
 using ITI.DesignPatterns.CustomPackage.Runtime.GamePlay;
 using ITI.DesignPatterns.CustomPackage.Runtime.Hud;
-using ITI.DesignPatterns.CustomPackage.Runtime.TurretUi;
+using ITI.DesignPatterns.CustomPackage.Runtime.Hud.TurretUi;
 using ITI.DesignPatterns.Foundation.Runtime.Command;
 using VContainer.Unity;
 

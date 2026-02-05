@@ -1,17 +1,22 @@
 using ITI.DesignPatterns.CustomPackage.Runtime.Enemies.EnemiesBehaviour;
 using ITI.DesignPatterns.CustomPackage.Runtime.GamePlay.Paths;
 using ITI.DesignPatterns.CustomPackage.Runtime.Updates;
+using ITI.DesignPatterns.Foundation.Runtime.AssetManagement;
 using ITI.DesignPatterns.Foundation.Runtime.Event;
 using ITI.DesignPatterns.Foundation.Runtime.ViewBinding;
 using System;
-using System.Numerics;
+using System.Threading.Tasks;
+using UnityEngine;
+using VContainer;
+using Vector2 = System.Numerics.Vector2;
 
 namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 {
     public sealed class Enemy : IDisposable
     {
-        private readonly IEventSystem _eventSystem;
-        private readonly IUpdateContext _updateContext;
+        private IEventSystem _eventSystem;
+        private IUpdateContext _updateContext;
+        private IAssetProvider _assetProvider;
 
         private readonly Path _enemyPath;
         private readonly EnemyData _enemyData;
@@ -25,21 +30,39 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
         public float Speed { get; private set; }
 
         public BindableProperty<bool> IsDeadOrReachedBase { get; private set; } = new();
+        public BindableProperty<Sprite> EnemyImage { get; private set; } = new();
 
         public Enemy(
             Path enemyPath,
-            EnemyData enemyData,
-            IEventSystem eventSystem,
-            IUpdateContext updateContext)
+            EnemyData enemyData)
         {
             _enemyPath = enemyPath;
             _enemyData = enemyData;
+        }
+
+        [Inject]
+        private void Inject(
+            IEventSystem eventSystem,
+            IUpdateContext updateContext,
+            IAssetProvider assetProvider)
+        {
             _eventSystem = eventSystem;
             _updateContext = updateContext;
+            _assetProvider = assetProvider;
 
-            _hp = enemyData.Hp;
+            _hp = _enemyData.Hp;
             Speed = _enemyData.Speed;
+
             _updateContext.Add(OnUpdate);
+
+            _ = GetEnemyImage();
+        }
+
+        private async Task GetEnemyImage()
+        {
+            var result = await _assetProvider.GetImage(_enemyData.EnemyImageId.ToString());
+
+            EnemyImage.Value = result;
         }
 
         public void UpdateSpeed(float newValue)
@@ -55,6 +78,9 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
             if (_enemyPath == null || _enemyPath.EnemyPath.Count == 0)
                 return;
 
+            if (IsDeadOrReachedBase.Value)
+                return;
+
             var targetPoint = _enemyPath.EnemyPath[_pathIndex].position;
             var newPosition = new Vector2(targetPoint.x, targetPoint.y);
             Position.Value = newPosition;
@@ -62,6 +88,15 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 
         public void EnemyReachedDestination()
         {
+            if (_enemyData.Hp <= 0)
+                return;
+
+            if (_enemyPath == null || _enemyPath.EnemyPath.Count <= 0)
+                return;
+
+            if (IsDeadOrReachedBase.Value)
+                return;
+
             _pathIndex++;
             if (_pathIndex >= _enemyPath.EnemyPath.Count)
             {
@@ -88,7 +123,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
         public void Dispose()
         {
             _updateContext.Remove(OnUpdate);
-            _currentEnemyStrategy.Dispose();
+            _currentEnemyStrategy?.Dispose();
         }
     }
 }

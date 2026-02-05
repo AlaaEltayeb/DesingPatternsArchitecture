@@ -15,4 +15,5 @@ MonoBehaviour:
   _imageSchemas:
   - {fileID: 11400000, guid: d5e95751fa978ea4eb9b6e3af6e5dc4c, type: 2}
   _soundSchemas: []
-  _prefabSchemas: []
+  _prefabSchemas:
+  - {fileID: 11400000, guid: 1cb5505a96328d54b8eea77bd49a0726, type: 2}

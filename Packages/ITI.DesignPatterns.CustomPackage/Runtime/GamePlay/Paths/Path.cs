@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace ITI.DesignPatterns.CustomPackage.Runtime.GamePlay.Paths
 {
-    public class Path : MonoBehaviour
+    public class Path
     {
         [field: SerializeField]
-        public List<Transform> EnemyPath { get; private set; }
+        public List<Transform> EnemyPath { get; private set; } = new();
     }
 }

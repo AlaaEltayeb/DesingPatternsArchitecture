@@ -16,6 +16,15 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
         {
             Enemy.Position.StartObserving(OnEnemyPositionChanged);
             Enemy.IsDeadOrReachedBase.StartObserving(OnEnemyDeadOrReachedBase);
+            Enemy.EnemyImage.StartObserving(OnEnemyImageChanged);
+        }
+
+        private void OnEnemyImageChanged(Sprite newValue)
+        {
+            if (newValue == null)
+                return;
+
+            _enemyImage.sprite = newValue;
         }
 
         public void SetEnemy(Enemy enemy)

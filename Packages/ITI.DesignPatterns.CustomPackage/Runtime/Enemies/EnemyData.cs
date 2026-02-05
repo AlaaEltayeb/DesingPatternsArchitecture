@@ -6,6 +6,9 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
     public sealed class EnemyData : ScriptableObject
     {
         [field: SerializeField]
+        public ImageIdsEnum EnemyImageId { get; private set; }
+
+        [field: SerializeField]
         public EnemyType EnemyType { get; private set; }
 
         [field: SerializeField]

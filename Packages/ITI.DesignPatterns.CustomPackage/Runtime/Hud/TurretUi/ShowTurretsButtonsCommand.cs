@@ -2,7 +2,7 @@ using ITI.DesignPatterns.Foundation.Runtime.Command;
 using ITI.DesignPatterns.Foundation.Runtime.MVVM;
 using VContainer;
 
-namespace ITI.DesignPatterns.CustomPackage.Runtime.TurretUi
+namespace ITI.DesignPatterns.CustomPackage.Runtime.Hud.TurretUi
 {
     public sealed class ShowTurretsButtonsCommand : ISyncCommand
     {

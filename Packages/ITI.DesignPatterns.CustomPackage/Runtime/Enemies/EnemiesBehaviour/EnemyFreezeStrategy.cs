@@ -19,7 +19,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies.EnemiesBehaviour
         public void Execute(Enemy enemy)
         {
             ApplySlow(enemy);
-            RemoveSlowAsync(enemy);
+            _ = RemoveSlowAsync(enemy);
         }
 
         private void ApplySlow(Enemy enemy)

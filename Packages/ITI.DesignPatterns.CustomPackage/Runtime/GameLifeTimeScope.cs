@@ -1,10 +1,11 @@
 using ITI.DesignPatterns.CustomPackage.Runtime.Enemies;
 using ITI.DesignPatterns.CustomPackage.Runtime.GamePlay;
 using ITI.DesignPatterns.CustomPackage.Runtime.Hud;
+using ITI.DesignPatterns.CustomPackage.Runtime.Hud.TurretUi;
 using ITI.DesignPatterns.CustomPackage.Runtime.Startup;
 using ITI.DesignPatterns.CustomPackage.Runtime.Strategy;
 using ITI.DesignPatterns.CustomPackage.Runtime.Turrets;
-using ITI.DesignPatterns.CustomPackage.Runtime.TurretUi;
+using ITI.DesignPatterns.CustomPackage.Runtime.Updates;
 using ITI.DesignPatterns.Foundation.Runtime.AssetManagement;
 using ITI.DesignPatterns.Foundation.Runtime.Command;
 using ITI.DesignPatterns.Foundation.Runtime.Event;
@@ -56,6 +57,9 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime
 
             builder.Register<IAssetProvider, AssetProvider>(Lifetime.Singleton);
             builder.RegisterInstance<IAssetCatalog>(_assetCatalog);
+
+            builder.RegisterComponentOnNewGameObject<UpdateContext>(Lifetime.Singleton)
+                .AsImplementedInterfaces();
 
             RegisterViewAndViewModels(builder);
         }

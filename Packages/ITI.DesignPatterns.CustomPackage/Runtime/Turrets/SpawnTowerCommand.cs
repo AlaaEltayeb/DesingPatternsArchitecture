@@ -1,7 +1,7 @@
 using ITI.DesignPatterns.Foundation.Runtime.Command;
 using VContainer;
 
-namespace ITI.DesignPatterns.CustomPackage.Runtime
+namespace ITI.DesignPatterns.CustomPackage.Runtime.Turrets
 {
     public sealed class SpawnTowerCommand : ISyncCommand
     {

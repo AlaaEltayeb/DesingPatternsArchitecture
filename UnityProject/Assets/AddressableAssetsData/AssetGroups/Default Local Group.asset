@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7823523ad77bdc4ab525a970b859c23
+    m_Address: Packages/com.iti.designpatterns.custompackage/Runtime/Enemies/EnemyView.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 49add347c4a82f24c99940cf29ae7a85, type: 2}
   m_SchemaSet:

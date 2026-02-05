@@ -4,7 +4,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
 {
     public sealed class EnemyProvider : IEnemyProvider
     {
-        private IEnemyContainer _enemyContainer;
+        private readonly IEnemyContainer _enemyContainer;
 
         private readonly Dictionary<EnemyType, EnemyData> _mapping = new();
 
@@ -32,5 +32,7 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
             enemy = value;
             return true;
         }
+
+        public string GetEnemyPrefabId() => _enemyContainer.EnemyPrefabId;
     }
 }

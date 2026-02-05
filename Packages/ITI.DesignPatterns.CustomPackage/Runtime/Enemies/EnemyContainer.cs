@@ -7,6 +7,9 @@ namespace ITI.DesignPatterns.CustomPackage.Runtime.Enemies
     public sealed class EnemyContainer : ScriptableObject, IEnemyContainer
     {
         [field: SerializeField]
+        public string EnemyPrefabId { get; private set; }
+
+        [field: SerializeField]
         public List<EnemyData> Enemies { get; private set; }
     }
 }
